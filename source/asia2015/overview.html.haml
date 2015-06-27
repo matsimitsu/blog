@@ -1,0 +1,5 @@
+---
+blog: Asia 2015
+---
+- page_articles.reverse.each do |article|
+  = partial 'overview', :locals => {:article => article}

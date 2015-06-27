@@ -1,0 +1,6 @@
+- blog_instances.each do |_, instance|
+  = link_to instance.options[:prefix] do
+    %article.overview
+      %header.small{:style => "background-image: url('//cdn.matsimitsu.com#{instance.options[:prefix]}/header.jpg')"}
+        .heading
+          %h1= instance.name

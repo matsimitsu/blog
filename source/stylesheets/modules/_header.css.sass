@@ -1,0 +1,54 @@
+header#header
+  position: absolute
+  top: 0
+  left: 0
+  z-index: 4
+  text-align: center
+  width: 100%
+
+  .container
+    padding: 10px 20px
+    color: white
+    margin: auto
+
+    a, a:active
+      +transition(opacity 200ms ease)
+      text-decoration: none
+      color: white
+      +opacity(.8)
+    a:hover
+      +opacity(1)
+
+    hgroup
+      float: left
+      text-align: left
+      font-weight: normal
+      width: 200px
+
+    h1
+      display: inline
+      font-size: 1.4em
+      color: white
+      border-right: 1px solid rgba(255, 255, 255, .8)
+      padding-right: 5px
+      font-weight: normal
+
+    h2
+      display: inline
+      font-size: 1em
+      color: white
+      font-weight: normal
+
+    nav
+      float: right
+      margin: 0
+      padding: 0
+
+      ul li
+        display: inline
+        padding-left: 10px
+        font-size: 1em
+
+  &.dark, &.dark a
+    color: #bdbdbd
+

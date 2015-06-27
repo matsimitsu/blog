@@ -1,0 +1,5 @@
+---
+title: "<%= @title %>"
+date: <%= ENV['DATE'] || @date %>
+location: <%= Geocoder.search(ENV['LOCATION']).first.try(:coordinates) if ENV['LOCATION']%>
+---

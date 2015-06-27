@@ -1,0 +1,9 @@
+---
+blog: Asia 2014
+---
+- page_articles.reverse.each do |article|
+  = link_to article.url do
+    %article.overview
+      %header.small{:style => "background-image: url('#{article.url}header.jpg')"}
+        .heading
+          %h1= article.title

@@ -1,0 +1,29 @@
+%article
+  %header.big{:style => "background-image: url('//cdn.matsimitsu.com#{article.url}header.jpg')"}
+    .heading
+      %h1= article.title
+      - if article.data.subtitle
+        %h2= article.data.subtitle
+      - elsif article.data.locations
+        %h2= article.data.locations.map{ |l| l['title'] }.join(' - ')
+      %a.scroller{:href => '#content'}
+        %i.fa.fa-angle-down
+
+  .body#content= article.body
+  .footer
+    #map.dark{'data-locations' => article.data.locations.map { |loc| {:latlng => loc.latlng, :title => "#{loc.title}", :url => article.url} }.to_json}
+    - if article.previous_article || article.next_article
+      .navigation
+        - if article.previous_article
+          = link_to article.previous_article.url, :class => 'prev', :style => "background-image: url('//cdn.matsimitsu.com#{article.previous_article.url}header.jpg')" do
+            %h3= article.previous_article.title
+        - if article.next_article
+          = link_to article.next_article.url, :class => 'next', :style => "background-image: url('//cdn.matsimitsu.com#{article.next_article.url}header.jpg')" do
+            %h3= article.next_article.title
+
+- content_for(:meta) do
+  %meta{:property =>"og:image",       :content => "#{base_url}#{article.url}header.jpg"}
+  %meta{:property =>"og:site_name",   :content => "http://travel.matsimitsu.com"}
+  %meta{:property =>"og:description", :content => "Matsimitsu | #{blog_controller.name} | #{article.title}"}
+  %meta{:property =>"og:type",        :content => "blog"}
+  %meta{:property =>"og:url",         :content => article.url}

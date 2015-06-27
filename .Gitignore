@@ -1,0 +1,6 @@
+.DS_Store
+build
+.Sass-cache
+*.mp4
+*.webm
+*.ogv
