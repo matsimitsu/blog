@@ -21,41 +21,30 @@
     %title Matsimitsu | #{blog_controller.name rescue 'Home'}
     = stylesheet_link_tag 'site'
     = stylesheet_link_tag 'mapbox'
+    = stylesheet_link_tag 'syntax'
 
     = yield_content :head
 
   %body{:class => page_classes}
-    - if (blog_controller rescue false)
-      %header#header
-        .container
-          %hgroup
-            %h1= link_to 'Matsimitsu', '/'
-            %h2= link_to blog_controller.name, "#{blog_controller.options[:prefix]}"
-          %nav
-            %ul
-              %li= link_to 'Map', "#{blog_controller.options[:prefix]}/map"
-              %li= link_to 'Overview', "#{blog_controller.options[:prefix]}/overview"
+    %header#header{:class => %w(blog photoset).include?((blog_controller.name.to_s rescue '')) || current_page.data.site_header == 'dark' ? 'dark' : nil }
+      .container
+        %hgroup
+          %h1= link_to 'Matsimitsu', '/'
+          - if (blog_controller rescue false)
+            %h2= link_to blog_controller.name, "#{blog_controller.options[:prefix]}/overview"
+        %nav
+          %ul
+            %li= link_to 'Home', "/"
+            %li= link_to 'Travel', "/travel"
+            %li= link_to 'Blog', "/blog"
+            %li= link_to 'Photos', "/photos"
 
     #main
       = yield
 
     %footer
       .container
-        .about.left
-          %h2 About
-          %p I started keeping a blog on my first trip to the USA and over time it has evolved from a simple one-page site with photos to the site you see today.
-          %p I'm a software engineer working at <a href="https://appsignal.com">AppSignal.com</a>. You can contact me on <a href="https://twitter.com/matsimitsu">Twitter</a> or look at my code on <a href="https://github.com/matsimitsu">GitHub</a>
-          %p Finally, here are a few other blogs i really enjoyed and inspired me for the locations that i visited in Japan:
-          %ul.list
-            %li <a href="http://15daysinjapan.com/">15 days in japan</a>
-            %li <a href="http://19daysinjapan.com/">19 days in japan</a>
-            %li <a href="http://paulstamatiou.com/photos/japan/two-weeks-in-japan/">Paul Stamatiou's 2 weeks in japan</a>
-
-        .about.right
-          %h2 Gear &amp; tech
-          %p Most of the photos were shot with a Nikon D90 and either a Tamron 28-75 or Nikon 10-24 lens.
-          %p I also used my Sony RX100 when taking the D90 and it's lenses along was to cumbersome. Besides the RX100 and D90 i used a GoPro Hero 3+ for shooting the videos.
-          %p The site is created in Middleman using the Blog extension. I have a couple of scripts that Geolocate the location for the map and lists all photos in a directory for usage in the post.  Everything is hosted on a Digital Ocean droplet. The map is generated using MapBox.
+        = yield_content(:footer)
 
       %p
         &copy; #{Date.today.year} - Robert Beekman

@@ -3,23 +3,47 @@ require 'geocoder'
 
 Geocoder.configure(:lookup => :google)
 
-TRAVELS = ['Asia 2015', 'USA 2014', 'Asia 2014', 'USA 2012', 'USA 2011']
-BASE_URL = 'http://travel.matsimitsu.com'
+TRAVELS       = ['Asia 2015', 'USA 2014', 'Asia 2014', 'USA 2012', 'USA 2011']
+BASE_URL      = 'http://travel.matsimitsu.com'
+TRAVEL_PREFIX = '/travel'
 
 TRAVELS.each do |travel|
   activate :blog do |blog|
-    blog.prefix = travel.downcase.gsub(' ', '')
-    blog.name = travel
-    blog.permalink = "/{title}"
-    blog.sources = "/{title}/index.html"
+    blog.prefix               = "#{TRAVEL_PREFIX}/#{travel.downcase.gsub(' ', '')}"
+    blog.name                 = travel
+    blog.permalink            = "/{title}"
+    blog.sources              = "/{title}/index.html"
     blog.new_article_template = "source/template.erb"
-    blog.layout = "article_layout"
-    blog.default_extension = '.haml'
+    blog.layout               = "trip_layout"
+    blog.default_extension    = '.haml'
   end
 end
 
 set :markdown_engine, :redcarpet
+set :markdown, :fenced_code_blocks => true, :smartypants => true
+
 activate :directory_indexes
+activate :syntax
+
+activate :blog do |blog|
+  blog.prefix               = 'blog'
+  blog.name                 = 'blog'
+  blog.permalink            = "/{year}-{month}-{day}-{title}"
+  blog.sources              = "/{year}-{month}-{day}-{title}.html"
+  blog.new_article_template = "source/template_blog.erb"
+  blog.layout               = "blog_layout"
+  blog.default_extension    = '.haml'
+end
+
+activate :blog do |blog|
+  blog.prefix               = 'photos'
+  blog.name                 = 'photoset'
+  blog.permalink            = "/{title}"
+  blog.sources              = "/{year}-{title}.html"
+  blog.new_article_template = "source/template_blog.erb"
+  blog.layout               = "photoset_layout"
+  blog.default_extension    = '.haml'
+end
 
 ###
 # Compass
@@ -85,6 +109,10 @@ activate :directory_indexes
 helpers do
   def base_url
     BASE_URL
+  end
+
+  def trip_from_prefix(prefix)
+    prefix.gsub(TRAVEL_PREFIX, '')
   end
 end
 # Change the CSS directory

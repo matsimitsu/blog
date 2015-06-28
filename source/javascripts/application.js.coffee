@@ -26,7 +26,8 @@ $(document).ready ->
         el.trigger('stop')
 
   height = $(window).height()
-  $('article header.big').height("#{height}px")
+  $('article.trip header.big').height("#{height}px")
+  $('article.post header.big').height("#{Math.round(height * 0.6)}px")
 
   $('.scroller').click (e) ->
     e.preventDefault();

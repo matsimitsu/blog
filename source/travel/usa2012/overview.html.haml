@@ -1,0 +1,13 @@
+---
+blog: USA 2012
+site_header: dark
+---
+
+%header.generic
+  .heading
+    %h1 Usa 2012
+    %h2 Let's do it all again
+
+.visual-overview
+  - page_articles.reverse.each do |article|
+    = partial 'overview', :locals => {:article => article}

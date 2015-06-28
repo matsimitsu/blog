@@ -1,0 +1,9 @@
+---
+blog: blog
+---
+- page_articles.reverse.each do |article|
+  %article.overview.post
+    = link_to article.url do
+      %h1= article.title
+      - if article.data.subtitle
+        %h2= article.data.subtitle
