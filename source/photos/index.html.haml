@@ -2,11 +2,6 @@
 blog: photoset
 site_header: dark
 ---
-%header.generic
-  .heading
-    %h1 Random photosets
-    %h2 Stuff that interests me
-
 .visual-overview
   - page_articles.reverse.each do |article|
     = link_to article.url, {:style => "background-image: url('#{article.data.header}')"} do

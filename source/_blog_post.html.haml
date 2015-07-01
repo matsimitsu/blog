@@ -6,15 +6,6 @@
         %h2= article.data.subtitle
 
   .body#content= article.body
-  .footer
-    - if article.previous_article || article.next_article
-      .navigation
-        - if article.previous_article
-          = link_to article.previous_article.url, :class => 'prev' do
-            %h3= article.previous_article.title
-        - if article.next_article
-          = link_to article.next_article.url, :class => 'next' do
-            %h3= article.next_article.title
 
 - content_for(:meta) do
   %meta{:property =>"og:site_name",   :content => "http://matsimitsu.com"}

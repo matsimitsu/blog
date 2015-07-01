@@ -1,13 +1,8 @@
 ---
 site_header: dark
+subtitle: Travel
 ---
-= wrap_layout :layout do
-  %header.generic
-    .heading
-      %h1 My travel stories
-      %h2 Oh the places I've been
-
-  .visual-overview
-    - blog_instances.select{ |_, i| i.options[:prefix].start_with?('/travel') }.each do |_, instance|
-      = link_to instance.options[:prefix], {:style => "background-image: url('//cdn.matsimitsu.com#{trip_from_prefix(instance.options[:prefix])}/header-1100x.jpg')"} do
-        %h1= instance.name
+.visual-overview
+  - blog_instances.select{ |_, i| i.options[:prefix].start_with?('/travel') }.each do |_, instance|
+    = link_to instance.options[:prefix], {:style => "background-image: url('//cdn.matsimitsu.com#{trip_from_prefix(instance.options[:prefix])}/header-1100x.jpg')"} do
+      %h1= instance.name

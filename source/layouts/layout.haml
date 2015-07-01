@@ -32,6 +32,9 @@
           %h1= link_to 'Matsimitsu', '/'
           - if (blog_controller rescue false)
             %h2= link_to blog_controller.name, "#{blog_controller.options[:prefix]}/overview"
+          - elsif current_page.data.subtitle
+            %h2= link_to current_page.data.subtitle, current_page.url
+
         %nav
           %ul
             %li= link_to 'Home', "/"
@@ -47,7 +50,7 @@
         = yield_content(:footer)
 
       %p
-        &copy; #{Date.today.year} - Robert Beekman
+        &copy; #{Date.today.year} - Robert Beekman - <a href="mailto:hello@matsimitsu.nl">Mail</a> - <a href="https://github.com/matsimitsu" target="_blank">GitHub</a> - <a href="https://twitter.com/matsimitsu">Twitter</a>
 
     = javascript_include_tag 'jquery'
     = javascript_include_tag 'application'

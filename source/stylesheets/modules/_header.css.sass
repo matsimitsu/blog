@@ -30,7 +30,7 @@ header#header
       display: inline
       font-size: 1.4em
       color: white
-      border-right: 1px solid rgba(255, 255, 255, .8)
+      border-right: 1px solid rgba(255, 255, 255, .5)
       padding-right: 5px
       font-weight: normal
 
@@ -39,6 +39,7 @@ header#header
       font-size: 1em
       color: white
       font-weight: normal
+      text-transform: capitalize
 
     nav
       float: right
@@ -50,7 +51,14 @@ header#header
         padding-left: 10px
         font-size: 1em
 
-  &.dark, &.dark a
+  &.dark
+    color: #393939
+    position: relative
+    height: 100px
+
+    .container hgroup h1
+      border-right: 1px solid rgba(0, 0, 0, 0.5)
+  &.dark a
     color: #393939
 
 header.generic
@@ -64,9 +72,10 @@ header.generic
     padding-bottom: 0px
     font-weight: normal
     font-size: 60px
-
+    text-align: center
   h2
     color: $font-light-color
     font-weight: normal
     margin: 0
     padding: 0
+    text-align: center

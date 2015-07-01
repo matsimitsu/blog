@@ -1,7 +1,7 @@
 ---
 blog: blog
 ---
-- page_articles.reverse.each do |article|
+- page_articles.each do |article|
   %article.overview.post
     = link_to article.url do
       %h1= article.title
