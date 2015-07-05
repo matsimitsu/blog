@@ -3,7 +3,7 @@ blog: photoset
 site_header: dark
 ---
 .visual-overview
-  - page_articles.reverse.each do |article|
+  - page_articles.each do |article|
     = link_to article.url, {:style => "background-image: url('#{article.data.header}')"} do
       .heading
         %h1= article.title

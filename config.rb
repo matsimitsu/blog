@@ -4,7 +4,7 @@ require 'geocoder'
 Geocoder.configure(:lookup => :google)
 
 TRAVELS       = ['Asia 2015', 'USA 2014', 'Asia 2014', 'USA 2012', 'USA 2011']
-BASE_URL      = 'http://travel.matsimitsu.com'
+BASE_URL      = 'http://matsimitsu.com'
 TRAVEL_PREFIX = '/travel'
 
 TRAVELS.each do |travel|
@@ -22,7 +22,6 @@ end
 set :markdown_engine, :redcarpet
 set :markdown, :fenced_code_blocks => true, :smartypants => true
 
-activate :directory_indexes
 activate :syntax
 
 activate :blog do |blog|
@@ -36,7 +35,7 @@ activate :blog do |blog|
 end
 
 activate :blog do |blog|
-  blog.prefix               = 'photos'
+  blog.prefix               = 'photoset'
   blog.name                 = 'photoset'
   blog.permalink            = "/{title}"
   blog.sources              = "/{year}-{title}.html"
@@ -44,6 +43,7 @@ activate :blog do |blog|
   blog.layout               = "photoset_layout"
   blog.default_extension    = '.haml'
 end
+activate :directory_indexes
 
 ###
 # Compass
@@ -130,8 +130,8 @@ configure :build do
   activate :minify_css
 
   # Minify Javascript on build
-  # activate :minify_javascript
-
+  activate :minify_javascript
+  activate :gzip
   # Enable cache buster
   # activate :cache_buster
 
