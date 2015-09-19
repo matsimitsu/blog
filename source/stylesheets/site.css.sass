@@ -72,7 +72,21 @@ p, ul, ol, dl, blockquote, hr, pre, table, fieldset, article, article footer, na
   margin: 0 0 1.5em 0
   line-height: 1.5em
 
-ul.list li
-  list-style: square inside
+ul.list
+  max-width: 500px
+  margin: 0px auto 20px
+  text-align: left
+  li
+    list-style: square inside
+
+code
+  font-family: Monaco, "Courier New", Courier, monospace
+  color: $font-light-color
+
+code
+  padding: 2px 4px
+  background-color: #ecf0f2
+  border-radius: 5px
+  font-size: 13px
 
 @import "modules/*"

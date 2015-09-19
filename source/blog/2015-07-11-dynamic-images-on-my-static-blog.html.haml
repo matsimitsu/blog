@@ -1,0 +1,49 @@
+---
+title: Dynamic images on my static blog
+date: 2015-07-11 00:00 +00:00
+subtitle: My workflow for this photoblog.
+---
+
+%p In the previous version of my photoblog I embedded all images in the directory of each post. This caused a few problems:
+
+%ul.list
+  %li Generating the static site took very long.
+  %li The site folder is 2GB big, slowing down Git and GitHub.
+  %li There’s no way to generate an image based on the viewer (retina display, etc.)
+
+%p For this new version I wanted fast compile times and a small site repo. This meant the images had to go.
+
+%h2 Serving the images
+
+%p I’m running this site on a <a href="https://www.digitalocean.com/?refcode=3aa0588f6e7a" target"_blank">512MB DigitalOcean</a> droplet that doesn’t run any dynamic content, it just serves static files with nginx. I needed something that could serve and possibly resize my images to the requested dimensions.
+
+%p Initially I had written a small Ruby application that could process uploaded images and dynamically resize them when requested. It worked well for a small while, but then I kept hitting the memory limit of my Droplet. I also felt there was too much code involved in the uploading a processing part.
+
+%h2 The switch to GO
+%p At <a href="https://appsignal.com" target"_blank">AppSignal</a> we use GO for some of our webservers, because it’s really fast and doesn’t require any software on our servers except for nginx.
+
+%p After an evening of searching for libraries on GitHub I found <a href="https://github.com/pilu/matrioska" target"_blank">Matrioska</a>, a thumbnail generator written in Go.
+
+%p It works really simple, just point it to a directory with photos on your server and run it. You can request the original image, or have it resize the image by adding the required dimensions to the photo, for example: <code>http://localhost:7000/foo.png</code> becomes <code>http://localhost:7000/foo-100x100.png</code>
+
+%h2 Adding a caching proxy
+%p After this was running on my webserver, I had to solve another problem. Matrioska doesn’t cache the images, meaning if you request an image ten times, Matrioska needs to generate the thumbnail ten times. This takes up a lot of resources, especially on <a href="/travel/asia2015/day-eleven/" target="_blank">pages with dozens of photos</a>.
+
+%p Since I already use nginx to host my static site, I can use it’s caching mechanism to cache thumbnails for a period of time. If someone requests and image ten times, Matrioska only needs to render it once. The other nine times it’s served from nginx’s cache.
+
+%p The following config tells nginx to cache everything returned by Matrioska for 30 days, with a maximum cache size of 5 Gigabytes.
+<script src="https://gist.github.com/matsimitsu/da7669b25d4915f3da57.js"></script>
+
+%p This init script (<code>/etc/init/matrioska.conf</code>) tells Ubuntu to start Matrioska on boot and make sure it keeps running.
+<script src="https://gist.github.com/matsimitsu/ac18fb557d543b2ca56a.js"></script>
+
+%p With everything in place, I can resize any image on my server, for example: <code>//cdn.matsimitsu.com/asia2015/day-eleven/image-24-1100x.jpg</code> renders this image with a width of 1100px:
+
+<img src="//cdn.matsimitsu.com/asia2015/day-eleven/image-24-1100x.jpg" />
+%h2 LightRoom
+
+%p
+  To finish everything off I found a <a href="https://github.com/knutsiem/ssh-lightroom-plugin" target"_blank">LightRoom plugin</a> that can publish photos through SSH. Now I can publish photos from LightRoom straight to my webserver and resize the photo in any way I want.
+
+%p
+  <img src="//cdn.matsimitsu.com/random/Screenshot_11_07_15_16_11-500x.jpg" />
