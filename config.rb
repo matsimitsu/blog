@@ -3,7 +3,7 @@ require 'geocoder'
 
 Geocoder.configure(:lookup => :google)
 
-TRAVELS       = ['Asia 2015', 'USA 2014', 'Asia 2014', 'USA 2012', 'USA 2011']
+TRAVELS       = ['Japan 2015','Asia 2015', 'USA 2014', 'Asia 2014', 'USA 2012', 'USA 2011']
 BASE_URL      = 'http://matsimitsu.com'
 TRAVEL_PREFIX = '/travel'
 
