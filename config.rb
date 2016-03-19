@@ -3,7 +3,7 @@ require 'geocoder'
 
 Geocoder.configure(:lookup => :google)
 
-TRAVELS       = ['Japan 2015','Asia 2015', 'USA 2014', 'Asia 2014', 'USA 2012', 'USA 2011']
+TRAVELS       = ['Asia 2016', 'Japan 2015','Asia 2015', 'USA 2014', 'Asia 2014', 'USA 2012', 'USA 2011']
 BASE_URL      = 'http://matsimitsu.com'
 TRAVEL_PREFIX = '/travel'
 
@@ -113,6 +113,14 @@ helpers do
 
   def trip_from_prefix(prefix)
     prefix.gsub(TRAVEL_PREFIX, '')
+  end
+
+  def travel_blogs
+    TRAVELS.map do |travel|
+      blog_instances.values.find do |blog|
+        blog.name.to_s == travel.to_s
+      end
+    end
   end
 end
 # Change the CSS directory

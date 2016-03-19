@@ -8,9 +8,9 @@ height    = ARGV[2] || 540
 basename = File.basename(path).split('.')[0]
 FileUtils.mkdir_p basename
 
-`ffmpeg -i "#{path}" -c:v libx264 -pix_fmt yuv420p -movflags faststart -g 30 -an "#{basename}/#{basename}.mp4"`
-`ffmpeg -i "#{path}"  -b 1500k -vcodec libvpx -acodec libvorbis -ab 160000 -f webm -g 30 -an "#{basename}/#{basename}.webm"`
-`ffmpeg -i "#{path}" -b 1500k -vcodec libtheora -acodec libvorbis -ab 160000 -g 30 -an "#{basename}/#{basename}.ogv"`
+`ffmpeg -i "#{path}" -vf scale=#{width}:#{height} -c:v libx264 -pix_fmt yuv420p -movflags faststart -g 30 -an "#{basename}/#{basename}.mp4"`
+`ffmpeg -i "#{path}" -vf scale=#{width}:#{height} -b 1500k -vcodec libvpx -acodec libvorbis -ab 160000 -f webm -g 30 -an "#{basename}/#{basename}.webm"`
+`ffmpeg -i "#{path}" -vf scale=#{width}:#{height} -b 1500k -vcodec libtheora -acodec libvorbis -ab 160000 -g 30 -an "#{basename}/#{basename}.ogv"`
 
 puts %Q(
 %video.video{:width => '100%', :loop => 'loop'}

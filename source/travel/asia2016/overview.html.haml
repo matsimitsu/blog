@@ -1,0 +1,13 @@
+---
+blog: Asia 2016
+site_header: dark
+---
+
+%header.generic
+  .heading
+    %h1 Asia 2016
+    %h2 Exploring Taiwan, Thailand, Cambodia and Laos.
+
+.visual-overview
+  - page_articles.reverse.each do |article|
+    = partial 'overview', :locals => {:article => article}

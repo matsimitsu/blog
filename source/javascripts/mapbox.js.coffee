@@ -9,7 +9,7 @@ window.loadMapBox = ->
 
   mapDiv = $('#map')
   if mapDiv.length > 0
-    map = L.mapbox.map('map', 'examples.map-cnkhv76j', {
+    map = L.mapbox.map('map', 'matsimitsu.p5d83n89', {
       featureLayer: false,
       scrollWheelZoom: false,
     })

@@ -1,6 +1,6 @@
 SSH_USER = 'matsimitsu'
-SSH_HOST = '198.199.81.123'
-SSH_DIR  = '/home/matsimitsu/html'
+SSH_HOST = 'static1.matsimitsu.com'
+SSH_DIR  = '/home/matsimitsu/site'
 
 desc "Build the website from source"
 task :build do
