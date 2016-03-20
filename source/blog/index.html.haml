@@ -1,8 +1,8 @@
 ---
 blog: blog
 ---
-- page_articles.each do |article|
-  %article.overview.post
+%article.mod-blog-overview
+  - page_articles.each do |article|
     = link_to article.url do
       %h1= article.title
       - if article.data.subtitle
