@@ -13,17 +13,15 @@ site_header: dark
 
 %ul.trip-overview
   %li
-    <i class="fa fa-plane"></i>
     <strong>10</strong> Flights
-
   %li
-    <i class="fa fa-globe"></i>
     <strong>6</strong> Countries
-
   %li
-    <i class="fa fa-camera"></i>
     <strong>1200</strong> Photos
 
+  %li.right
+    <strong>May</strong>
+    2016
 .visual-overview
   - page_articles.reverse.each do |article|
     = partial '_overview', :locals => {:article => article}
