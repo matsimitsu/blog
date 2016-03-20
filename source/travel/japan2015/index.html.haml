@@ -1,5 +1,27 @@
 ---
 blog: Japan 2015
+site_header: dark
 ---
-.blog
-  = partial(:trip, :locals => {:article => page_articles.last})
+%header.generic
+  .heading
+    %h1 Japan 2015
+    %h2 Exploring Tokyo.
+
+#map.overview{'data-mapbox-id' => 'matsimitsu.f687427c', 'data-center' => [35.1575,138.4552].to_json, 'data-zoom' => 7, 'data-zoom-control' => 'false', 'data-locations' => page_articles.map { |a| a.data.locations.map { |loc| {:latlng => loc.latlng, :title => "[#{a.title}] #{loc.title}", :url => a.url} } }.flatten.to_json }
+
+%ul.trip-overview
+  %li
+    <i class="fa fa-plane"></i>
+    <strong>10</strong> Flights
+
+  %li
+    <i class="fa fa-globe"></i>
+    <strong>6</strong> Countries
+
+  %li
+    <i class="fa fa-camera"></i>
+    <strong>1200</strong> Photos
+
+.visual-overview
+  - page_articles.reverse.each do |article|
+    = partial '_overview', :locals => {:article => article}

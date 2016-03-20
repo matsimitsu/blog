@@ -1,2 +1,19 @@
 #map
   width: 100%
+
+  &.overview
+    cursor: default
+    height: 400px
+    margin-bottom: 80px
+    &:after
+      position: absolute
+      bottom: 0
+      left: 0
+      width: 100%
+      content: ""
+      height: 10%
+      background-image: linear-gradient(rgba(0,0,0,0), #fff)
+      z-index: 1
+
+    .leaflet-clickable
+      cursor: pointer

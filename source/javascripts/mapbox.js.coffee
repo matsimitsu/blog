@@ -9,13 +9,24 @@ window.loadMapBox = ->
 
   mapDiv = $('#map')
   if mapDiv.length > 0
-    map = L.mapbox.map('map', 'matsimitsu.p5d83n89', {
+    id = mapDiv.data('mapbox-id') || 'matsimitsu.p5d83n89'
+    map = L.mapbox.map('map', id, {
       featureLayer: false,
       scrollWheelZoom: false,
+      zoomControl: mapDiv.data('zoom-control') != false
     })
 
+    if mapDiv.data('zoom-control') == false
+      map.dragging.disable();
+      map.touchZoom.disable();
+      map.doubleClickZoom.disable();
+      map.scrollWheelZoom.disable();
+      map.keyboard.disable();
+      if (map.tap)
+        map.tap.disable();
+
     if mapDiv.data('locations')
-      mapDiv.height($(window).height() - $('footer').outerHeight(true))
+      #mapDiv.height($(window).height() - $('footer').outerHeight(true))
 
       markers = []
       for location in mapDiv.data('locations')
@@ -28,7 +39,10 @@ window.loadMapBox = ->
         markers.push marker
         marker.addTo(map)
 
-      if markers.length > 1
+      if mapDiv.data('center')
+        zoom = mapDiv.data('zoom') || 8
+        map.setView(mapDiv.data('center'), zoom)
+      else if markers.length > 1
         group = new L.featureGroup(markers)
         map.fitBounds(group.getBounds().pad(0.1))
         map.setZoom(14) if map.getZoom() > 14
