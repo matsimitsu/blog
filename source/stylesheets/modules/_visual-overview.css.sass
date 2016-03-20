@@ -1,32 +1,12 @@
-.mod-trip-overview
-  width: 1100px
-  margin: 0 auto
-  display: flex
-  margin-bottom: 20px
-
-  li
-    color: $font-medium-color
-
-    & + li
-      margin-left: 20px
-
-    &:last-child
-      margin-left: auto
-
-    strong
-      color: $font-color
-
 .mod-visual-overview
   max-width: 1100px
-  margin: auto
+  margin: 0 auto 80px
   padding: 0
   +clearfix
+
   a
     width: 545px
     height: 300px
-    display: flex
-    justify-content: flex-start
-    align-items: flex-end
     float: left
     margin-right: 10px
     margin-bottom: 10px
@@ -34,22 +14,25 @@
     background-position: center center
     background-size: cover
     text-decoration: none
-    position: relative
     color: white
     text-align: left
     +text-shadow
+    display: flex
+    justify-content: stretch
+    align-items: flex-start
 
     .heading
       z-index: 5
-      padding: 40px
+      padding: 40px 40px 80px
       width: 100%
+      background: linear-gradient(rgba(#000,0.7), rgba(#000,0))
 
     h1
       +h2
       margin-bottom: 10px
 
     h2
-      +h3
+      +p
 
   a:nth-child(2n+1)
     margin-right: 0
@@ -57,13 +40,3 @@
   a:first-child
     width: 1100px
     height: 550px
-
-.mod-blog-overview
-  a
-    +padding
-
-  h1
-    +h2
-
-  h2
-    +h3
