@@ -45,9 +45,8 @@
     #main
       = yield
 
-    %footer
-      .container
-        = yield_content(:footer)
+    %footer.mod-footer
+      = yield_content(:footer)
 
       %p
         &copy; #{Date.today.year} - Robert Beekman - <a href="mailto:hello@matsimitsu.nl"><i class="fa fa-envelope-o"></i></a> -

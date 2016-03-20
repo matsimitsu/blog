@@ -1,10 +1,9 @@
-%article.mod-article.mod-post
-  %header
-    .heading
-      %h1= article.title
-      - if article.data.subtitle
-        %h2= article.data.subtitle
+.mod-page-title
+  %h1= article.title
+  - if article.data.subtitle
+    %h2= article.data.subtitle
 
+%article.mod-article.mod-post
   .body#content= article.body
 
 - content_for(:meta) do
