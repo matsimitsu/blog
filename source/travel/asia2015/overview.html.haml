@@ -2,11 +2,10 @@
 blog: Asia 2015
 site_header: dark
 ---
-%header.generic
-  .heading
-    %h1 Asia 2015
-    %h2 Exploring Singapore, Kuala Lumpur, Vietnam, Hong Kong and Shanghai.
+%header.mod-page-title
+  %h1 Asia 2015
+  %h2 Exploring Singapore, Kuala Lumpur, Vietnam, Hong Kong and Shanghai.
 
-.visual-overview
+.mod-visual-overview
   - page_articles.reverse.each do |article|
     = partial 'overview', :locals => {:article => article}

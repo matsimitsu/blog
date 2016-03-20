@@ -3,11 +3,10 @@ blog: USA 2011
 site_header: dark
 ---
 
-%header.generic
-  .heading
-    %h1 Usa 2011
-    %h2 Time to leave europe
+%header.mod-page-title
+  %h1 Usa 2011
+  %h2 Time to leave europe
 
-.visual-overview
+.mod-visual-overview
   - page_articles.reverse.each do |article|
     = partial 'overview', :locals => {:article => article}

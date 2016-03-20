@@ -2,14 +2,13 @@
 blog: Japan 2015
 site_header: dark
 ---
-%header.generic
-  .heading
-    %h1 Japan 2015
-    %h2 Exploring Tokyo.
+%header.mod-page-title
+  %h1 Japan 2015
+  %h2 Exploring Tokyo.
 
 #map.overview{'data-mapbox-id' => 'matsimitsu.f687427c', 'data-center' => [35.1575,138.4552].to_json, 'data-zoom' => 7, 'data-zoom-control' => 'false', 'data-locations' => page_articles.map { |a| a.data.locations.map { |loc| {:latlng => loc.latlng, :title => "[#{a.title}] #{loc.title}", :url => a.url} } }.flatten.to_json }
 
-%ul.trip-overview
+%ul.mod-trip-overview
   %li
     <strong>10</strong> Flights
   %li
@@ -20,6 +19,6 @@ site_header: dark
   %li.right
     <strong>November</strong>
     2015
-.visual-overview
+.mod-visual-overview
   - page_articles.reverse.each do |article|
     = partial '_overview', :locals => {:article => article}

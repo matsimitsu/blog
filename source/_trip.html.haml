@@ -1,14 +1,14 @@
-%article.trip
-  %header.big{:style => "background-image: url('//cdn.matsimitsu.com#{trip_from_prefix(article.url)}header.jpg')"}
-    .heading
-      %h1= article.title
-      - if article.data.subtitle
-        %h2= article.data.subtitle
-      - elsif article.data.locations
-        %h2= article.data.locations.map{ |l| l['title'] }.join(' - ')
-      %a.scroller{:href => '#content'}
-        %i.fa.fa-angle-down
+%header.mod-photo-header{:style => "background-image: url('//cdn.matsimitsu.com#{trip_from_prefix(article.url)}header.jpg')"}
+  .heading
+    %h1= article.title
+    - if article.data.subtitle
+      %h2= article.data.subtitle
+    - elsif article.data.locations
+      %h2= article.data.locations.map{ |l| l['title'] }.join(' - ')
+    %a.scroller{:href => '#content'}
+      %i.fa.fa-angle-down
 
+%article.mod-article.mod-trip
   .body#content= article.body
   .footer
     #map.dark{'data-locations' => article.data.locations.map { |loc| {:latlng => loc.latlng, :title => "#{loc.title}", :url => article.url} }.to_json}

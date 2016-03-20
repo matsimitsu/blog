@@ -3,11 +3,10 @@ blog: Asia 2014
 site_header: dark
 ---
 
-%header.generic
-  .heading
-    %h1 Asia 2014
-    %h2 Visiting Japan, China and Korea
+%header.mod-page-title
+  %h1 Asia 2014
+  %h2 Visiting Japan, China and Korea
 
-.visual-overview
+.mod-visual-overview
   - page_articles.reverse.each do |article|
     = partial 'overview', :locals => {:article => article}

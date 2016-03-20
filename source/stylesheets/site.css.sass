@@ -1,93 +1,12 @@
 @import "compass"
 @import "compass/css3/box-shadow"
-@import "utilities/mixins"
-@import "font-awesome"
-
-$link-color:         #0388a6
-$link-hover-color:   #009ce0
-$link-focus-color:   false
-$link-active-color:  false
-$link-visited-color: false
-$dark-color:         #1c1c1c
-
-$max-width: 1100px
-
-$font-color: #393939
-$font-medium-color: #777
-$font-light-color: #bdbdbd
-$font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
-$base-font-size:   12px
-$base-line-height: 18px
 
 @include global-reset
 
-body
-  font-family: $font-family
-  color: $font-color
-  text-align: center
-
-a
-  @include link-colors($link-color, $link-hover-color, $link-focus-color, $link-active-color, $link-visited-color)
-
-h1
-  font-size: 2em
-  font-weight: bold
-  color: #222
-  line-height: 1.125em
-  margin: 0.75em 0 0.375em 0
-  letter-spacing: -.05em
-  -webkit-font-smoothing: antialiased
-h2
-  font-size: 1.525em
-  line-height: 1.125em
-  margin: 0.75em 0 0.375em 0
-  font-weight: bold
-
-h3
-  font-size: 1.425em
-  line-height: 1.384em
-  letter-spacing: -.035em
-  margin: 0.9231em 0 0.462em 0
-
-h4
-  font-size: 1.25em
-  line-height: 1.2em
-  margin-top: 1.2em
-
-h5
-  font-size: 1.125em
-  line-height: 1.3333em
-  margin-top: 1.3333em
-
-h6
-  font-size: 0.875em
-  line-height: 1.7143em
-  margin-top: 1.7143em
-  text-transform: uppercase
-
-small
-  font-size: 0.9em
-  color: #BFBFBF
-
-p, ul, ol, dl, blockquote, hr, pre, table, fieldset, article, article footer, nav
-  margin: 0 0 1.5em 0
-  line-height: 1.5em
-
-ul.list
-  max-width: 500px
-  margin: 0px auto 20px
-  text-align: left
-  li
-    list-style: square inside
-
-code
-  font-family: Monaco, "Courier New", Courier, monospace
-  color: $font-light-color
-
-code
-  padding: 2px 4px
-  background-color: #ecf0f2
-  border-radius: 5px
-  font-size: 13px
+@import "utilities/variables"
+@import "utilities/mixins"
+@import "utilities/layout"
+@import "utilities/typography"
+@import "font-awesome"
 
 @import "modules/*"

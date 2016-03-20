@@ -2,7 +2,7 @@
 blog: photoset
 site_header: dark
 ---
-.visual-overview
+.mod-visual-overview
   - page_articles.each do |article|
     = link_to article.url, {:style => "background-image: url('#{article.data.header}')"} do
       .heading

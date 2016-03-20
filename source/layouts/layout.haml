@@ -26,7 +26,7 @@
     = yield_content :head
 
   %body{:class => page_classes}
-    %header#header{:class => %w(blog photoset).include?((blog_controller.name.to_s rescue '')) || current_page.data.site_header == 'dark' ? 'dark' : nil }
+    %header.mod-header{:class => %w(blog photoset).include?((blog_controller.name.to_s rescue '')) || current_page.data.site_header == 'dark' ? 'dark' : nil }
       .container
         %hgroup
           %h1= link_to 'Matsimitsu', '/'
