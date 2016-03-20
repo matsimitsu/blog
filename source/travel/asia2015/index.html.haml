@@ -7,7 +7,6 @@ site_header: dark
     %h1 Asia 2015
     %h2 Exploring South East Asia.
 
-
 #map.overview{'data-mapbox-id' => 'matsimitsu.f687427c', 'data-center' => [8.3843, 105.2051].to_json, 'data-zoom' => 4, 'data-zoom-control' => 'false', 'data-locations' => page_articles.map { |a| a.data.locations.map { |loc| {:latlng => loc.latlng, :title => "[#{a.title}] #{loc.title}", :url => a.url} } }.flatten.to_json }
 
 
