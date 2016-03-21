@@ -1,3 +1,9 @@
+- content_for(:meta) do
+  %meta{:property =>"og:site_name",   :content => "http://matsimitsu.com"}
+  %meta{:property =>"og:description", :content => "Matsimitsu | #{blog_controller.name} | #{article.title}"}
+  %meta{:property =>"og:type",        :content => "blog"}
+  %meta{:property =>"og:url",         :content => article.url}
+
 = wrap_layout :layout do
   .photoset
     = partial(:photoset, :locals => {:article => current_article})

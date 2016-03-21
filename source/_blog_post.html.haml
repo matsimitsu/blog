@@ -6,9 +6,3 @@
         %h2= article.data.subtitle
 
   .body#content= article.body
-
-- content_for(:meta) do
-  %meta{:property =>"og:site_name",   :content => "http://matsimitsu.com"}
-  %meta{:property =>"og:description", :content => "Matsimitsu | #{blog_controller.name} | #{article.title}"}
-  %meta{:property =>"og:type",        :content => "blog"}
-  %meta{:property =>"og:url",         :content => article.url}

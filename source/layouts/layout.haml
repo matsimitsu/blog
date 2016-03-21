@@ -7,8 +7,8 @@
 
     %meta{:name => "author",    :content => "Robert Beekman"}
     %meta{:name => "publisher", :content => "Robert Beekman"}
-    %meta{:name => "copyright", :content => "2015 by Robert Beekman"}
-    %meta{:name => "host",      :content => "travel.matsimitsu.com"}
+    %meta{:name => "copyright", :content => "&copy; 2010-#{Date.today.year} by Robert Beekman"}
+    %meta{:name => "host",      :content => "http://matsimitsu.com"}
     %meta{:name => "generator", :content => "Middleman App"}
 
     %meta{:name => "description",   :content => "Matsimitsu | #{blog_controller.name rescue 'Home'}"}
@@ -16,6 +16,7 @@
     %meta{:name => "keywords",      :content => "travel, asia, usa, blog"}
     %meta{:name => "revisit-after", :content => "2 days"}
     %link{:rel => 'icon', :type => 'image/png', :href => '/images/icon.png', :sizes => '32x32'}
+
     = yield_content :meta
 
     %title Matsimitsu | #{blog_controller.name rescue 'Home'}

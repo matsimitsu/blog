@@ -1,8 +1,4 @@
-= wrap_layout :layout do
-  .trip
-    = partial(:trip, :locals => {:article => current_article})
-
-= content_for(:footer) do
+- content_for(:footer) do
   .about.left
     %h2 About
     %p I started keeping a blog on my first trip to the USA and over time it has evolved from a simple one-page site with photos to the site you see today.
@@ -18,3 +14,25 @@
     %p Most of the photos were shot with a Nikon D90 and either a Tamron 28-75 or Nikon 10-24 lens.
     %p I also used my Sony RX100 when taking the D90 and it's lenses along was to cumbersome. Besides the RX100 and D90 i used a GoPro Hero 3+ for shooting the videos.
     %p The site is created in Middleman using the Blog extension. I have a couple of scripts that Geolocate the location for the map and lists all photos in a directory for usage in the post.  Everything is hosted on a Digital Ocean droplet. The map is generated using MapBox.
+
+- content_for(:meta) do
+  -# Facebook metadata
+  %meta{:property =>"og:type",         :content => "article"}
+  %meta{:property =>"og:title",        :content => "#{current_article.title} | #{blog_controller.name} | Matsimitsu"}
+  %meta{:property =>"og:description",  :content => current_article.data.intro}
+  %meta{:property =>"og:site_name",    :content => "http://matsimitsu.com"}
+  %meta{:property =>"og:url",          :content => "http://matsimitsu.com#{current_article.url}"}
+  %meta{:property =>"og:image",        :content => "http://cdn.matsimitsu.com#{trip_from_prefix(current_article.url)}header.jpg"}
+
+  -# Twitter metadata
+  %meta{:property =>"twitter:site",        :content => "@matsimitsu"}
+  %meta{:property =>"twitter:creator",     :content => "@matsimitsu"}
+  %meta{:property =>"twitter:title",       :content => "#{current_article.title} | #{blog_controller.name} | Matsimitsu"}
+  %meta{:property =>"twitter:description", :content => current_article.data.intro}
+  %meta{:property =>"twitter:url",         :content => "http://matsimitsu.com#{current_article.url}"}
+  %meta{:property =>"twitter:image",       :content => "http://cdn.matsimitsu.com#{trip_from_prefix(current_article.url)}header.jpg"}
+  %meta{:property =>"twitter:card",        :content => "summary_large_image"}
+
+= wrap_layout :layout do
+  .trip
+    = partial(:trip, :locals => {:article => current_article})

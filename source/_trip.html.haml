@@ -20,11 +20,3 @@
         - if article.next_article
           = link_to article.next_article.url, :class => 'next', :style => "background-image: url('//cdn.matsimitsu.com#{trip_from_prefix(article.next_article.url)}header-1000x.jpg')" do
             %h3= article.next_article.title
-
-- content_for(:meta) do
-  %meta{:property =>"og:image",       :content => "#{base_url}#{article.url}header.jpg"}
-  %meta{:property =>"og:site_name",   :content => "http://travel.matsimitsu.com"}
-  %meta{:property =>"og:description", :content => "Matsimitsu | #{blog_controller.name} | #{article.title}"}
-  %meta{:property =>"og:type",        :content => "blog"}
-  %meta{:property =>"og:url",         :content => article.url}
-
