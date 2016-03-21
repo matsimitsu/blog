@@ -1,22 +1,21 @@
-#map
+.mod-map
   width: 100%
+  +shadow
+  margin-bottom: 80px
+  position: relative
 
-  &.overview
+  .overview
     cursor: default
-    height: 40vh
+    height: 50vh
     min-height: 400px
-    border-bottom: 1px solid $border
-    margin-bottom: 40px
-
-    &:after
-      position: absolute
-      top: 0
-      left: 0
-      width: 100%
-      content: ""
-      height: 20%
-      background-image: linear-gradient(#fff, rgba(0,0,0,0))
-      z-index: 1
 
     .leaflet-clickable
       cursor: pointer
+
+  .mod-page-title
+    position: absolute
+    bottom: 0
+    width: 100%
+    +padding
+    z-index: 2
+    background-image: linear-gradient(rgba(0,0,0,0), #fff)

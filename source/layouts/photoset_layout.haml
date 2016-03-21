@@ -5,5 +5,4 @@
   %meta{:property =>"og:url",         :content => article.url}
 
 = wrap_layout :layout do
-  .photoset
-    = partial(:photoset, :locals => {:article => current_article})
+  = partial(:photoset, :locals => {:article => current_article})
