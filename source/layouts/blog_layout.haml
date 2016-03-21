@@ -3,7 +3,7 @@
 
   // Facebook metadata
   %meta{:property =>"og:type",        :content => "article"}
-  %meta{:property =>"og:title",       :content => "#{article.title} | #{blog_controller.name} | Matsimitsu"}
+  %meta{:property =>"og:title",       :content => "#{current_article.title} | #{blog_controller.name} | Matsimitsu"}
   %meta{:property =>"og:description", :content => current_article.data.intro}
   %meta{:property =>"og:site_name",   :content => "http://matsimitsu.com"}
   %meta{:property =>"og:url",         :content => "http://matsimitsu.com#{current_article.url}"}
@@ -11,7 +11,7 @@
   // Twitter metadata
   %meta{:property =>"twitter:site",        :content => "@matsimitsu"}
   %meta{:property =>"twitter:creator",     :content => "@matsimitsu"}
-  %meta{:property =>"twitter:title",       :content => "#{article.title} | #{blog_controller.name} | Matsimitsu"}
+  %meta{:property =>"twitter:title",       :content => "#{current_article.title} | #{blog_controller.name} | Matsimitsu"}
   %meta{:property =>"twitter:description", :content => current_article.data.intro}
   %meta{:property =>"twitter:url",         :content => "http://matsimitsu.com#{current_article.url}"}
   %meta{:property =>"twitter:card",        :content => "summary"}

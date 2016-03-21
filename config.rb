@@ -5,6 +5,8 @@ Geocoder.configure(:lookup => :google)
 
 TRAVELS       = ['Asia 2016', 'Japan 2015','Asia 2015', 'USA 2014', 'Asia 2014', 'USA 2012', 'USA 2011']
 BASE_URL      = 'http://matsimitsu.com'
+CDN_BASE_URL  = 'http://cdn.matsimits.com'
+
 TRAVEL_PREFIX = '/travel'
 
 TRAVELS.each do |travel|
