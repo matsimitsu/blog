@@ -8,7 +8,6 @@ VALID_IMAGES = %w( png jpg )
 SSH_USER     = 'matsimitsu'
 SSH_HOST     = 'static1.matsimitsu.com'
 SSH_DIR      = '/home/matsimitsu'
-CDN_PATH     = '//cdn.matsimitsu.com'
 
 require_relative 'config' rescue nil
 
@@ -77,10 +76,9 @@ command :post do |c|
 
         path            = File.join(base_path, item)
         width, height   = FastImage.size(path)
-        file_with_width = item.gsub(".#{extension}", "-2200x.#{extension}")
-        cdn_path        = "#{CDN_PATH}/#{blog_slug}/#{title_slug}/#{file_with_width}"
+        cdn_path        = "#{blog_slug}/#{title_slug}/#{item}"
 
-        photos << "%img{:src => '#{cdn_path}', :width => '#{width /2 }', :height => '#{height / 2}'}"
+        photos << "=photo(:src => cdn_url('#{cdn_path}'), :ratio => #{(width/height).round(3)}')"
       end
     end
 

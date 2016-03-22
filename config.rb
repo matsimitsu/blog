@@ -66,10 +66,6 @@ helpers do
     @trips
   end
 
-  def trip_for_blog(blog)
-    trips.find{ |t| t.name == blog.name }
-  end
-
   def map_for_trip(trip)
     # Default params
     params = {
@@ -99,6 +95,7 @@ helpers do
       }
       .flatten
       .to_json
+
     # Generate the HTML
     capture_haml do
       haml_tag(:div, params)
