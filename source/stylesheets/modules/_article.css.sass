@@ -28,22 +28,18 @@
     .photo-row
       width: 100%
       margin: 0 auto
-      display: block
       max-width: $max-width
       overflow: hidden
+      display: flex
 
-      &:before,&:after
-        content: ""
-        display: table
+      figure
+        padding-left: 10px
 
-      &:after
-        clear: both
-
+        &:first-child
+          padding: 0
       img
-        float: left
-        vertical-align: bottom
-        display: inline-block
-
+        width: 100%
+        height: auto
     p
       max-width: 500px
       text-align: left

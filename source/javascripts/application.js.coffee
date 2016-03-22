@@ -1,7 +1,6 @@
 //= require simplevideo
 //= require visible
 //= require scrollto
-//= require rowgrid
 //= require mapbox
 
 @check_scroll = undefined
@@ -32,8 +31,5 @@ $(document).ready ->
   $('.scroller').click (e) ->
     e.preventDefault();
     $.scrollTo( $(@).attr('href'), 800 );
-
-  $('.photo-row').each ->
-    $(@).collagePlus()
 
   window.loadMapBox();
