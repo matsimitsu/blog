@@ -77,7 +77,7 @@ helpers do
     # Render a figure tag with ratio, and an image tag
     capture_haml do
       haml_tag :figure, :class => class_str, :style => "flex:#{ratio}" do
-        haml_tag :img, :src => params[:src]
+        haml_tag :img, :'data-src' => params[:src], :src => '//cdn.matsimitsu.com/loader.gif'
       end
     end
   end

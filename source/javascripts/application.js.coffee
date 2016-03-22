@@ -24,6 +24,12 @@ $(document).ready ->
       else
         el.trigger('stop')
 
+    $('[data-src]:not(.rendered)').each ->
+      el = $(@)
+      return unless  el.visible(true)
+      el.attr('src', el.data('src'))
+      el.addClass('rendered')
+
   height = $(window).height()
   $('article.trip header.big').height("#{height}px")
   $('article.post header.big').height("#{Math.round(height * 0.6)}px")
