@@ -67,14 +67,16 @@ helpers do
 
   def photo(params)
     # Calculate the ratio
-    ratio = params[:ratio] || [
-      (params[:height].to_f / params[:width].to_f),
-      (params[:width].to_f / params[:height].to_f),
-    ].min.round(3)
+    ratio = params[:ratio] || (params[:width].to_f / params[:height].to_f).round(3)
 
+    if params[:class]
+      class_str = "photo-row-photo #{params[:class]}"
+    else
+      class_str = "photo-row-photo"
+    end
     # Render a figure tag with ratio, and an image tag
     capture_haml do
-      haml_tag :figure, :class => "photo-row-photo", :style => "flex:#{ratio}" do
+      haml_tag :figure, :class => class_str, :style => "flex:#{ratio}" do
         haml_tag :img, :src => params[:src]
       end
     end

@@ -6,7 +6,11 @@
     position: relative
     overflow: hidden
 
-    img, object, iframe, video, .gist, pre
+    img
+      width: 100%
+      height: auto
+
+    figure, object, iframe, video, .gist, pre
       display: block
       margin: 0 auto 10px
       max-width: $max-width
@@ -37,9 +41,6 @@
 
         &:first-child
           padding: 0
-      img
-        width: 100%
-        height: auto
     p
       max-width: 500px
       text-align: left
