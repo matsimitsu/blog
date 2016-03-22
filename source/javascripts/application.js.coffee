@@ -26,8 +26,10 @@ $(document).ready ->
 
     $('[data-src]:not(.rendered)').each ->
       el = $(@)
-      return unless  el.visible(true)
-      el.attr('src', el.data('src'))
+      return unless el.visible(true)
+
+      # Replace the image src with a response image size.
+      el.attr('src', el.data('src').replace('.jpg', "-#{el.width()}x.jpg"))
       el.addClass('rendered')
 
   height = $(window).height()

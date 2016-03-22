@@ -9,10 +9,10 @@ subtitle: Travel
 .mod-visual-overview
   - blogs = travel_blogs
   - first = blogs.shift
-  = link_to first.options[:prefix], {:style => "background-image: url('//cdn.matsimitsu.com#{trip_from_prefix(first.options[:prefix])}/header-1100x.jpg')"} do
+  = link_to first.options[:prefix], {:style => "background-image: url('//cdn.matsimitsu.com#{trip_from_prefix(first.options[:prefix])}/header.jpg')"} do
     %header.heading
       %h1= first.name
   - blogs.each do |instance|
-    = link_to instance.options[:prefix], {:style => "background-image: url('//cdn.matsimitsu.com#{trip_from_prefix(instance.options[:prefix])}/header-545x.jpg')"} do
+    = link_to instance.options[:prefix], {:style => "background-image: url('//cdn.matsimitsu.com#{trip_from_prefix(instance.options[:prefix])}/header.jpg')"} do
       %header.heading
         %h1= instance.name
