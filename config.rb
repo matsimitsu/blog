@@ -1,24 +1,29 @@
 require 'redcarpet'
-require 'geocoder'
 
-Geocoder.configure(:lookup => :google)
+@trips = []
 
-TRAVELS       = ['Asia 2016', 'Japan 2015','Asia 2015', 'USA 2014', 'Asia 2014', 'USA 2012', 'USA 2011']
-BASE_URL      = 'http://matsimitsu.com'
-CDN_BASE_URL  = 'http://cdn.matsimits.com'
+data.config.trips.each do |trip|
+  trip['slug'] = trip.title.downcase.gsub(' ', '')
+  trip['path'] = "#{data.config.trip_prefix}/#{trip.slug}"
 
-TRAVEL_PREFIX = '/travel'
-
-TRAVELS.each do |travel|
-  activate :blog do |blog|
-    blog.prefix               = "#{TRAVEL_PREFIX}/#{travel.downcase.gsub(' ', '')}"
-    blog.name                 = travel
+  # Activate blog for trip
+  blog = activate :blog do |blog|
+    blog.prefix               = trip.path
+    blog.name                 = trip.title
     blog.permalink            = "/{title}"
     blog.sources              = "/{title}/index.html"
     blog.new_article_template = "source/template.erb"
     blog.layout               = "trip_layout"
     blog.default_extension    = '.haml'
   end
+  # Add blog to trip
+  trip['blog'] = blog
+
+  # Store trips with metadata
+  @trips << trip
+
+  # Add index for trip
+  proxy "#{trip.path}/index.html", "/trip_overview.html", :locals => { :trip => trip }, :ignore => true
 end
 
 set :markdown_engine, :redcarpet
@@ -49,20 +54,60 @@ end
 activate :directory_indexes
 
 helpers do
-  def base_url
-    BASE_URL
+  def base_url(*paths)
+    "#{data.config.base_url}/#{paths.join('/')}"
   end
 
-  def trip_from_prefix(prefix)
-    prefix.gsub(TRAVEL_PREFIX, '')
+  def cdn_url(*paths)
+    "#{data.config.cdn_base_url}/#{paths.join('/')}"
   end
 
-  def travel_blogs
-    TRAVELS.map do |travel|
-      blog_instances.values.find do |blog|
-        blog.name.to_s == travel.to_s
-      end
+  def trips
+    @trips
+  end
+
+  def trip_for_blog(blog)
+    trips.find{ |t| t.name == blog.name }
+  end
+
+  def map_for_trip(trip)
+    # Default params
+    params = {
+      'id'                => 'map',
+      'class'             => 'overview',
+      'data-mapbox-id'    => 'matsimitsu.f687427c',
+      'data-zoom-control' => 'false'
+    }
+
+    # Add trip-specific params
+    trip.overview_map.each do |key,val|
+      params["data-#{key}"] = val
+    end if trip.overview_map
+
+    # Add coordinates for articles
+    params['data-locations'] = trip.blog
+      .data
+      .articles
+      .map { |a|
+        a.data.locations.map { |loc|
+          {
+            :latlng => loc.latlng,
+            :title => "[#{a.title}] #{loc.title}",
+            :url => a.url
+          }
+        }
+      }
+      .flatten
+      .to_json
+    # Generate the HTML
+    capture_haml do
+      haml_tag(:div, params)
     end
+  end
+
+  def article_header_image_url(article)
+    path = article.url.gsub(data.config.trip_prefix, '')
+    cdn_url(path, 'header.jpg')
   end
 
   def photo(params)
@@ -83,34 +128,9 @@ helpers do
   end
 end
 
-# Change the CSS directory
-# set :css_dir, "alternative_css_directory"
-
-# Change the JS directory
-# set :js_dir, "alternative_js_directory"
-
-# Change the images directory
-# set :images_dir, "alternative_image_directory"
-
-# Build-specific configuration
 configure :build do
-  # For example, change the Compass output style for deployment
   activate :minify_css
-
-  # Minify Javascript on build
   activate :minify_javascript
   activate :gzip
-  # Enable cache buster
-  # activate :cache_buster
-
-  # Use relative URLs
   activate :relative_assets
-
-  # Compress PNGs after build
-  # First: gem install middleman-smusher
-  # require "middleman-smusher"
-  # activate :smusher
-
-  # Or use a different image path
-  # set :http_path, "/Content/images/"
 end

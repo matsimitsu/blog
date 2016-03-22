@@ -1,4 +1,0 @@
----
-blog: USA 2014
----
-#map.dark.big{'data-locations' => page_articles.map { |a| a.data.locations.map { |loc| {:latlng => loc.latlng, :title => "[#{a.title}] #{loc.title}", :url => a.url} } }.flatten.to_json }

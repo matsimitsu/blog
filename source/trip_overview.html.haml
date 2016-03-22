@@ -1,0 +1,23 @@
+---
+blog: #{trip.name}
+---
+.mod-map
+  = map_for_trip(trip)
+
+  .mod-page-title
+    %h1= trip.title
+    %h2= trip.subtitle
+
+%ul.mod-trip-overview
+  - trip.stats.each do |key,val|
+    %li
+      %strong= val
+      = key.capitalize
+
+  %li.right
+    %strong= trip.date.month
+    = trip.date.year
+
+.mod-visual-overview
+  - trip.blog.data.articles.reverse.each do |article|
+    = partial '_overview', :locals => {:article => article, :trip => trip}

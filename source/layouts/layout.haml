@@ -32,7 +32,7 @@
         %hgroup
           %h1= link_to 'Matsimitsu', '/'
           - if (blog_controller rescue false)
-            %h2= link_to blog_controller.name, "#{blog_controller.options[:prefix]}/overview"
+            %h2= link_to blog_controller.name, "#{blog_controller.options[:prefix]}"
           - elsif current_page.data.subtitle
             %h2= link_to current_page.data.subtitle, current_page.url
 

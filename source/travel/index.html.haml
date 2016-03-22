@@ -1,5 +1,4 @@
 ---
-site_header: dark
 subtitle: Travel
 ---
 .mod-page-title
@@ -7,12 +6,7 @@ subtitle: Travel
   %h2 Photographing the world, one location at a time.
 
 .mod-visual-overview
-  - blogs = travel_blogs
-  - first = blogs.shift
-  = link_to first.options[:prefix], {:style => "background-image: url('//cdn.matsimitsu.com#{trip_from_prefix(first.options[:prefix])}/header.jpg')"} do
-    %header.heading
-      %h1= first.name
-  - blogs.each do |instance|
-    = link_to instance.options[:prefix], {:style => "background-image: url('//cdn.matsimitsu.com#{trip_from_prefix(instance.options[:prefix])}/header.jpg')"} do
+  - trips.each do |trip|
+    = link_to trip.path, {:style => "background-image: url('#{cdn_url(trip.slug, 'header.jpg')}')"} do
       %header.heading
-        %h1= instance.name
+        %h1= trip.title

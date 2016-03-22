@@ -1,7 +1,8 @@
-= link_to article.url, {:style => "background-image: url('//cdn.matsimitsu.com#{trip_from_prefix(article.url)}header-x550.jpg')"} do
+= link_to article.url, {:style => "background-image: url('#{cdn_url(trip.slug, article.slug, 'header-x550.jpg')}')"} do
   .heading
     %h1= article.title
     - if article.data.subtitle
       %h2= article.data.subtitle
     - elsif article.data.locations
       %h2= article.data.locations.map{ |l| l['title'] }.join(' - ')
+

@@ -1,0 +1,66 @@
+base_url: 'http://matsimitsu.com'
+cdn_base_url: 'http://cdn.matsimitsu.com'
+trip_prefix: '/travel'
+trips:
+  -
+    title: 'Japan 2015'
+    subtitle: 'Exploring Tokyo.'
+    stats:
+      photos: 1200
+      flights: 4
+      countries: 1
+    date:
+      month: November
+      year: 2015
+    overview_map:
+      zoom: 7
+      center: [35.1575,138.4552]
+  -
+    title: 'Asia 2015'
+    subtitle: 'Exploring South East Asia.'
+    stats:
+      flights: 10
+      countries: 6
+      photos: 1200
+    date:
+      month: May
+      year: 2015
+  -
+    title: 'USA 2014'
+    subtitle: 'Exploring south USA in a sunny November.'
+    stats:
+      states: 5
+      photos: 1200
+    date:
+      month: November
+      year: 2014
+  -
+    title: 'Asia 2014'
+    subtitle: 'My first trip to Asia.'
+    stats:
+      flights: 6
+      countries: 3
+      photos: 1200
+    date:
+      month: May
+      year: 2014
+  -
+    title: 'USA 2012'
+    subtitle: 'On the road again.'
+    stats:
+      flights: 6
+      countries: 3
+      photos: 1200
+    date:
+      month: May
+      year: 2014
+  -
+    title: 'USA 2011'
+    subtitle: 'Roadtrip!'
+    stats:
+      flights: 6
+      countries: 3
+      photos: 1200
+    date:
+      month: May
+      year: 2014
