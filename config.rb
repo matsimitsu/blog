@@ -1,6 +1,5 @@
 require 'redcarpet'
 
-
 activate :blog do |blog|
   blog.prefix               = data.config.trip_prefix
   blog.name                 = 'Travel'
@@ -130,7 +129,7 @@ helpers do
   end
 
   def article_header_image_url(article)
-    cdn_url(article.metadata[:page]['trip_slug'], 'header.jpg')
+    cdn_url(article.metadata[:page]['trip_slug'], article.slug, 'header.jpg')
   end
 
   def photo(params)

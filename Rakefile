@@ -1,7 +1,3 @@
-SSH_USER = 'matsimitsu'
-SSH_HOST = 'static1.matsimitsu.com'
-SSH_DIR  = '/home/matsimitsu/site'
-
 desc "Build the website from source"
 task :build do
   puts "## Building website"
@@ -16,11 +12,12 @@ end
 
 desc "Deploy website via rsync"
 task :deploy do
-  puts "## Deploying website via rsync to #{SSH_HOST}"
-  status = system("rsync -avze 'ssh' build/ #{SSH_USER}@#{SSH_HOST}:#{SSH_DIR}")
+  @config = YAML.load_file('data/config.yml')
+
+  puts "## Deploying website via rsync to #{@config['ssh_host']}"
+  status = system("rsync -avze 'ssh' build/ #{@config['ssh_user']}@#{@config['ssh_host']}:#{@config['ssh_dir']}")
   puts status ? "OK" : "FAILED"
 end
 
 desc "Build and deploy website"
-task :build_deploy => [:build, :deploy] do
-end
+task :build_deploy => [:build, :deploy]

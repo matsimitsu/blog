@@ -1,3 +1,6 @@
 base_url:     'http://matsimitsu.com'
 cdn_base_url: 'http://cdn.matsimitsu.com'
 trip_prefix:  'travel'
+ssh_user:     'matsimitsu'
+ssh_host:     'static1.matsimitsu.com'
+ssh_dir:      '/home/matsimitsu'
