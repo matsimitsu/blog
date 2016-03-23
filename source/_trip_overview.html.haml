@@ -6,10 +6,11 @@
     %h2= current_page.data.subtitle
 
 %ul.mod-trip-overview
-  - current_page.data.stats.each do |key,val|
-    %li
-      %strong= val
-      = key.capitalize
+  - if current_page.data.stats
+    - current_page.data.stats.each do |key,val|
+      %li
+        %strong= val
+        = key.capitalize
 
   %li.right
     %strong= current_page.data.date.month
