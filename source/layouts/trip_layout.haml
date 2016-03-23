@@ -18,8 +18,8 @@
 - content_for(:meta) do
   -# Facebook metadata
   %meta{:property =>"og:type",         :content => "article"}
-  %meta{:property =>"og:title",        :content => "#{current_article.title} | #{blog_controller.name} | Matsimitsu"}
-  %meta{:property =>"og:description",  :content => current_article.data.intro}
+  %meta{:property =>"og:title",        :content => page_title}
+  %meta{:property =>"og:description",  :content => description}
   %meta{:property =>"og:site_name",    :content => "http://matsimitsu.com"}
   %meta{:property =>"og:url",          :content => "http://matsimitsu.com#{current_article.url}"}
   %meta{:property =>"og:image",        :content => article_header_image_url(current_article)}
@@ -27,8 +27,8 @@
   -# Twitter metadata
   %meta{:property =>"twitter:site",        :content => "@matsimitsu"}
   %meta{:property =>"twitter:creator",     :content => "@matsimitsu"}
-  %meta{:property =>"twitter:title",       :content => "#{current_article.title} | #{blog_controller.name} | Matsimitsu"}
-  %meta{:property =>"twitter:description", :content => current_article.data.intro}
+  %meta{:property =>"twitter:title",       :content => page_title}
+  %meta{:property =>"twitter:description", :content => description}
   %meta{:property =>"twitter:url",         :content => "http://matsimitsu.com#{current_article.url}"}
   %meta{:property =>"twitter:image",       :content =>  article_header_image_url(current_article)}
   %meta{:property =>"twitter:card",        :content => "summary_large_image"}

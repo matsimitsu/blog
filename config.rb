@@ -1,29 +1,15 @@
 require 'redcarpet'
 
-@trips = []
 
-data.config.trips.each do |trip|
-  trip['slug'] = trip.title.downcase.gsub(' ', '')
-  trip['path'] = "#{data.config.trip_prefix}/#{trip.slug}"
+activate :blog do |blog|
+  blog.prefix               = data.config.trip_prefix
+  blog.name                 = 'Travel'
+  blog.permalink            = "{trip_slug}/{title}"
+  blog.sources              = "{trip_slug}/{title}/index.html"
+  blog.new_article_template = "source/template.erb"
+  blog.layout               = "trip_layout"
+  blog.default_extension    = '.haml'
 
-  # Activate blog for trip
-  blog = activate :blog do |blog|
-    blog.prefix               = trip.path
-    blog.name                 = trip.title
-    blog.permalink            = "/{title}"
-    blog.sources              = "/{title}/index.html"
-    blog.new_article_template = "source/template.erb"
-    blog.layout               = "trip_layout"
-    blog.default_extension    = '.haml'
-  end
-  # Add blog to trip
-  trip['blog'] = blog
-
-  # Store trips with metadata
-  @trips << trip
-
-  # Add index for trip
-  proxy "#{trip.path}/index.html", "/trip_overview.html", :locals => { :trip => trip }, :ignore => true
 end
 
 set :markdown_engine, :redcarpet
@@ -33,7 +19,7 @@ activate :syntax
 
 activate :blog do |blog|
   blog.prefix               = 'blog'
-  blog.name                 = 'blog'
+  blog.name                 = 'Blog'
   blog.permalink            = "/{year}-{month}-{day}-{title}"
   blog.sources              = "/{year}-{month}-{day}-{title}.html"
   blog.new_article_template = "source/template_blog.erb"
@@ -43,7 +29,7 @@ end
 
 activate :blog do |blog|
   blog.prefix               = 'photoset'
-  blog.name                 = 'photoset'
+  blog.name                 = 'Photosets'
   blog.permalink            = "/{title}"
   blog.sources              = "/{year}-{title}.html"
   blog.new_article_template = "source/template_blog.erb"
@@ -62,8 +48,51 @@ helpers do
     "#{data.config.cdn_base_url}/#{paths.join('/')}"
   end
 
+  def page_title
+    parts = []
+    parts << current_page.data.title.presence
+    if current_article && slug = current_article.metadata[:page]['trip_slug']
+      parts << trip_by_slug(slug).title
+    end
+    parts << blog_controller.name if blog_controller rescue false
+    parts << 'Matsimitsu'
+    parts.compact.join(' | ')
+  end
+
+  def description
+    if current_article && current_article.data.locations
+      locations = current_article
+        .data
+        .locations
+        .map { |l| l['title'] }
+        .join(', ')
+      "Visiting #{locations}"
+    else
+      current_page.data.description ||
+      current_page.data.subtitle ||
+      "Matsimitsu | #{blog_controller.name rescue 'Home'}"
+    end
+  end
+
+  def trip_slug_path(trip)
+    "/#{data.config.trip_prefix}/#{trip}"
+  end
+
   def trips
-    @trips
+    sitemap
+      .resources
+      .select  { |r| r.path.match(/#{data.config.trip_prefix}\/\w+\/index.html/) }
+      .map     { |r| r.data }
+      .sort_by { |r| articles_for_trip(r).first.date }
+      .reverse
+  end
+
+  def trip_by_slug(trip_slug)
+    trips.find { |t| t.slug == trip_slug }
+  end
+
+  def articles_for_trip(trip)
+    page_articles.select { |a| a.metadata[:page]['trip_slug'] == trip.slug }
   end
 
   def map_for_trip(trip)
@@ -81,9 +110,7 @@ helpers do
     end if trip.overview_map
 
     # Add coordinates for articles
-    params['data-locations'] = trip.blog
-      .data
-      .articles
+    params['data-locations'] = articles_for_trip(trip)
       .map { |a|
         a.data.locations.map { |loc|
           {
@@ -103,8 +130,7 @@ helpers do
   end
 
   def article_header_image_url(article)
-    path = article.url.gsub(data.config.trip_prefix, '')
-    cdn_url(path, 'header.jpg')
+    cdn_url(article.metadata[:page]['trip_slug'], 'header.jpg')
   end
 
   def photo(params)

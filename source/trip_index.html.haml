@@ -1,5 +1,5 @@
 ---
-subtitle: Travel
+blog: Travel
 ---
 .mod-map
   = map_for_trip(trip)
@@ -19,5 +19,5 @@ subtitle: Travel
     = trip.date.year
 
 .mod-visual-overview
-  - trip.blog.data.articles.reverse.each do |article|
+  - articles_for_trip(trip).reverse.each do |article|
     = partial '_overview', :locals => {:article => article, :trip => trip}

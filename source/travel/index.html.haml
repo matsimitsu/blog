@@ -1,5 +1,5 @@
 ---
-subtitle: Travel
+blog: Travel
 ---
 .mod-page-title
   %h1 My travels
@@ -7,6 +7,6 @@ subtitle: Travel
 
 .mod-visual-overview
   - trips.each do |trip|
-    = link_to trip.path, {:style => "background-image: url('#{cdn_url(trip.slug, 'header.jpg')}')"} do
+    = link_to trip_slug_path(trip.slug), {:style => "background-image: url('#{cdn_url(trip.slug, 'header.jpg')}')"} do
       %header.heading
         %h1= trip.title

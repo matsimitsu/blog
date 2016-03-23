@@ -11,7 +11,7 @@
     %meta{:name => "host",      :content => "http://matsimitsu.com"}
     %meta{:name => "generator", :content => "Middleman App"}
 
-    %meta{:name => "description",   :content => "Matsimitsu | #{blog_controller.name rescue 'Home'}"}
+    %meta{:name => "description",   :content => description}
     %meta{:name => "abstract",      :content => "Documenting trips abroad through photography."}
     %meta{:name => "keywords",      :content => "travel, asia, usa, blog"}
     %meta{:name => "revisit-after", :content => "2 days"}
@@ -19,7 +19,8 @@
 
     = yield_content :meta
 
-    %title Matsimitsu | #{(current_page.data.subtitle || (blog_controller.name rescue 'home') ) }
+    %title= page_title
+
     = stylesheet_link_tag 'site'
     = stylesheet_link_tag 'mapbox'
     = stylesheet_link_tag 'syntax'
@@ -31,10 +32,12 @@
       .container
         %hgroup
           %h1= link_to 'Matsimitsu', '/'
-          - if (blog_controller rescue false)
+          - if (blog_controller rescue false) # If we're on a blog
             %h2= link_to blog_controller.name, "#{blog_controller.options[:prefix]}"
-          - elsif current_page.data.subtitle
-            %h2= link_to current_page.data.subtitle, current_page.url
+            - if current_article && trip_slug = current_article.metadata[:page]['trip_slug'] # If there's a trip and an article
+              %h2= link_to trip_by_slug(trip_slug).title, trip_slug_path(trip_slug)
+          - elsif current_page.data.title # If there's a page title set
+            %h2= link_to current_page.data.title, current_page.url
 
         %nav
           %ul
