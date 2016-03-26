@@ -12,10 +12,11 @@ end
 
 desc "Deploy website via rsync"
 task :deploy do
+  require 'yaml'
   @config = YAML.load_file('data/config.yml')
 
   puts "## Deploying website via rsync to #{@config['ssh_host']}"
-  status = system("rsync -avze 'ssh' build/ #{@config['ssh_user']}@#{@config['ssh_host']}:#{@config['ssh_dir']}")
+  status = system("rsync --update -avze 'ssh' build/ #{@config['ssh_user']}@#{@config['ssh_host']}:#{@config['ssh_dir']}/site")
   puts status ? "OK" : "FAILED"
 end
 
