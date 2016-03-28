@@ -91,7 +91,9 @@ helpers do
   end
 
   def articles_for_trip(trip)
-    page_articles.select { |a| a.metadata[:page]['trip_slug'] == trip.slug }
+    blog('Travel')
+      .articles
+      .select { |a| a.metadata[:page]['trip_slug'] == trip.slug }
   end
 
   def map_for_trip(trip)

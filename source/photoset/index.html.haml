@@ -5,11 +5,5 @@ title: Photosets
 .mod-page-title
   %h1 Photosets
   %h2 Short trips and events
-.mod-visual-overview
-  - page_articles.each do |article|
-    = link_to article.url, {:style => "background-image: url('#{article.data.header}')"} do
-      .heading
-        %h1= article.title
-        - if article.data.subtitle
-          %h2= article.data.subtitle
 
+= partial('overview/photoset', :locals => {:articles => page_articles})

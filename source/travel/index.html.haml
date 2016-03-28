@@ -5,8 +5,4 @@ blog: Travel
   %h1 My travels
   %h2 Photographing the world, one location at a time.
 
-.mod-visual-overview
-  - trips.each do |trip|
-    = link_to trip_slug_path(trip.slug), {:style => "background-image: url('#{cdn_url(trip.slug, 'header.jpg')}')"} do
-      %header.heading
-        %h1= trip.title
+= partial('overviews/travel', :locals => {:trips => trips})
