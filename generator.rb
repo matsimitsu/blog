@@ -1,3 +1,5 @@
+#encoding: utf-8
+
 require 'commander/import'
 require 'geocoder'
 require 'yaml'
@@ -6,7 +8,7 @@ require 'fastimage'
 require 'middleman-blog'
 
 VALID_IMAGES = %w( png jpg )
-
+Encoding.default_external = Encoding::UTF_8
 Geocoder.configure(:lookup => :google, :timeout => (1 * 60))
 
 @config = YAML.load_file('data/config.yml')

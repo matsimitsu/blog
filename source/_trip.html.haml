@@ -5,10 +5,18 @@
       %h2= article.data.subtitle
     - elsif article.data.locations
       %h2= article.data.locations.map{ |l| l['title'] }.join(' - ')
+
     %a.scroller{:href => '#content'}
       %i.fa.fa-angle-down
 
 %article.mod-article.mod-trip
+  //%ul.mod-day-overview
+  //  - if current_page.data.stats
+  //    - current_page.data.stats.each do |key,val|
+  //      %li
+  //        = key.humanize
+  //        %strong= val
+
   .body#content= article.body
   .footer
     #map.dark{'data-locations' => article.data.locations.map { |loc| {:latlng => loc.latlng, :title => "#{loc.title}", :url => article.url} }.to_json}
