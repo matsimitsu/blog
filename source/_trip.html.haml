@@ -19,7 +19,7 @@
 
   .body#content= article.body
   .footer
-    #map.dark{'data-locations' => article.data.locations.map { |loc| {:latlng => loc.latlng, :title => "#{loc.title}", :url => article.url} }.to_json}
+    #map.dark{'data-locations' => (article.data.locations || []).map { |loc| {:latlng => loc.latlng, :title => "#{loc.title}", :url => article.url} }.to_json}
     - if article.previous_article || article.next_article
       .navigation
         - if article.previous_article

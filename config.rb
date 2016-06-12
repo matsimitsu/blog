@@ -113,7 +113,7 @@ helpers do
     # Add coordinates for articles
     params['data-locations'] = articles_for_trip(trip)
       .map { |a|
-        a.data.locations.map { |loc|
+        (a.data.locations || []).map { |loc|
           {
             :latlng => loc.latlng,
             :title => "[#{a.title}] #{loc.title}",
