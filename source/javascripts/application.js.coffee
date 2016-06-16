@@ -2,6 +2,7 @@
 //= require visible
 //= require scrollto
 //= require mapbox
+//= require imgix
 
 @check_scroll = undefined
 
@@ -33,11 +34,11 @@ $(document).ready ->
       # Check if preview is true (low res photos)
       if window.location.search.indexOf('preview') > -1
         width = 200
+
       # Give rentina screens a resolution they can work with.
-      else if window.devicePixelRatio > 1
-        width = width * 2
+      dpr = Math.ceil(window.devicePixelRatio*10) /10;
       # Replace the image src with a response image size.
-      el.attr('src', el.data('src').replace('.jpg', "-#{width}x.jpg"))
+      el.attr('src', "#{el.data('src')}?w=#{width}&dpr=#{dpr}") #.replace('.jpg', "-#{width}x.jpg"))
       el.addClass('rendered')
 
   height = $(window).height()
@@ -49,3 +50,13 @@ $(document).ready ->
     $.scrollTo( $(@).attr('href'), 800 );
 
   window.loadMapBox();
+
+  options = {
+    updateOnResizeDown : true,
+    updateOnPinchZoom : true,
+    fitImgTagToContainerWidth: true,
+    fitImgTagToContainerHeight: true,
+  };
+  imgix.onready(function() {
+    imgix.fluid(options);
+  });
