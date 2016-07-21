@@ -143,10 +143,11 @@ helpers do
     else
       class_str = "photo-row-photo"
     end
+    low_res = params[:src].gsub('.jpg', '-40x.jpg')
     # Render a figure tag with ratio, and an image tag
     capture_haml do
       haml_tag :figure, :class => class_str, :style => "flex:#{ratio}" do
-        haml_tag :img, :'data-src' => params[:src], :src => '//cdn.matsimitsu.com/loader.gif'
+        haml_tag :img, :'data-src' => params[:src], :src => low_res
       end
     end
   end
