@@ -10,5 +10,5 @@ Dir.foreach(ARGV[0]) do |item|
   path = "#{base}#{item}"
   width, height = FastImage.size(path)
 
-  puts "%img{:src => '#{path}', :width => '#{width /2 }', :height => '#{height / 2}'}"
+  puts "= photo(:src => cdn_url('#{path}'), :ratio => #{(width.to_f/height.to_f).round(3)})"
 end
