@@ -7,10 +7,10 @@ window.loadMapBox = ->
     popupAnchor: [0, -10]
   })
 
-  mapDiv = $('#map')
-  if mapDiv.length > 0
+  $('.map').each (foo, el) ->
+    mapDiv = $(el)
     id = mapDiv.data('mapbox-id') || 'matsimitsu.p5d83n89'
-    map = L.mapbox.map('map', id, {
+    map = L.mapbox.map(el, id, {
       featureLayer: false,
       scrollWheelZoom: false,
       zoomControl: mapDiv.data('zoom-control') != false

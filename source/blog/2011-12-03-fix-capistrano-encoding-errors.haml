@@ -28,3 +28,4 @@ subtitle: Fixing ArgumentError invalid byte sequence in US-ASCII
   The fix is pretty simple, we need to tell the server that the encoding should be UTF8 for the command that will be executed. Luckly we can do this in capistrano in a very easy way. Place this in your deploy.rb file and everything shoud work as expected!
 
 <script src="https://gist.github.com/1427648.js?file=gistfile1.rb"></script>
+

@@ -1,12 +1,15 @@
-@import "compass"
-@import "compass/css3/box-shadow"
-@import url(https://fonts.googleapis.com/css?family=Poppins)
-@include global-reset
-
+//@import url(https://fonts.googleapis.com/css?family=Poppins)
+@import "utilities/reset"
 @import "utilities/variables"
 @import "utilities/mixins"
-@import "utilities/layout"
 @import "utilities/typography"
 @import "font-awesome"
 
 @import "modules/*"
+
+*, *:before, *:after
+  box-sizing: border-box
+
+.content-wrapper
+  max-width: $content-width
+  margin: auto

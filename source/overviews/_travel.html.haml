@@ -1,4 +1,4 @@
-.mod-visual-overview
+.overview.images
   - trips.each do |trip|
     = link_to trip_slug_path(trip.slug), {:style => "background-image: url('#{cdn_url(trip.slug, 'header.jpg')}')"} do
       %header.heading

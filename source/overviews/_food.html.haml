@@ -1,0 +1,8 @@
+.overview.images
+  - articles.each do |article|
+    = link_to article.url, {:style => "background-image: url('#{resize article.data.header, '1100x'}')"} do
+      .heading
+        %h1= article.title
+        - if article.data.subtitle
+          %h2= article.data.subtitle
+

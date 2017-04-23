@@ -1,0 +1,49 @@
+.footer
+  text-align: center
+  font-size: .9em
+
+  .map
+    height: $block-height
+  .navigation
+    @include small-margin
+    height: $block-height
+    padding: 0
+
+    a
+      position: relative
+      background-color: transparent
+      background-repeat: no-repeat
+      background-position: center center
+      background-size: cover
+      text-decoration: none
+      width: 50%
+      height: $block-height
+
+      h3
+        color: white
+        +text-shadow
+        letter-spacing: 1px
+        font-weight: normal
+        font-size: 2em
+        +opacity(.5)
+        padding: 0 20px
+        margin: auto
+        line-height: $block-height
+
+      &:hover
+        h3
+          +opacity(1)
+    .prev
+      float: left
+      h3
+        text-align: right
+
+    .next
+      float: right
+      h3
+        text-align: left
+
+  .content
+    max-width: $text-width
+    margin: auto
+    text-align: center

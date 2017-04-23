@@ -6,15 +6,15 @@ subtitle: Phnom Penh to Siem Reap
 
 %p Another travel day, this time by means of a 6 hour bus ride from Phnom Penh to Siem Reap. Beware, crappy moving-bus-with-tinted-windows pictures ahead :)
 
-.photo-row
+.columns
   = photo(:src => cdn_url('asia2016/day-twelve/DSC04331.jpg'), :ratio => 1.5)
   = photo(:src => cdn_url('asia2016/day-twelve/DSC04339.jpg'), :ratio => 1.5)
-.photo-row
+.columns
   = photo(:src => cdn_url('asia2016/day-twelve/DSC04356.jpg'), :ratio => 1.5)
   = photo(:src => cdn_url('asia2016/day-twelve/DSC04355.jpg'), :ratio => 1.5)
   = photo(:src => cdn_url('asia2016/day-twelve/DSC04366.jpg'), :ratio => 1.5)
 
 %p After six hours of driving and rain we arrived at the hotel. Time for a dip in the pool and dinner.
-.photo-row
+.columns
   = photo(:src => cdn_url('asia2016/day-twelve/DSC04368.jpg'), :ratio => 1.5)
   = photo(:src => cdn_url('asia2016/day-twelve/DSC04369.jpg'), :ratio => 1.5)

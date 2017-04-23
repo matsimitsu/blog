@@ -1,21 +1,21 @@
-.mod-map
+#header.half
   = map_for_trip(current_page.data)
 
-  .mod-page-title
+  .heading
     %h1= current_page.data.title
     %h2= current_page.data.subtitle
+.content-wrapper
+  %ul.list.horizontal
+    - if current_page.data.stats
+      - current_page.data.stats.each do |key,val|
+        %li
+          %strong= val
+          = key.capitalize
 
-%ul.mod-trip-overview
-  - if current_page.data.stats
-    - current_page.data.stats.each do |key,val|
-      %li
-        %strong= val
-        = key.capitalize
+    %li.right
+      %strong= current_page.data.date.month
+      = current_page.data.date.year
 
-  %li.right
-    %strong= current_page.data.date.month
-    = current_page.data.date.year
-
-.mod-visual-overview
-  - articles_for_trip(current_page.data).reverse.each do |article|
-    = partial '_overview', :locals => {:article => article, :trip => current_page.data}
+  .overview.images
+    - articles_for_trip(current_page.data).reverse.each do |article|
+      = partial '_overview', :locals => {:article => article, :trip => current_page.data}

@@ -36,6 +36,16 @@ activate :blog do |blog|
   blog.default_extension    = '.haml'
 end
 
+activate :blog do |blog|
+  blog.prefix               = 'food'
+  blog.name                 = 'Food'
+  blog.permalink            = "/{title}"
+  blog.sources              = "/{year}-{title}.html"
+  blog.new_article_template = "source/template_food.erb"
+  blog.layout               = "food_layout"
+  blog.default_extension    = '.markdown'
+end
+
 activate :directory_indexes
 
 helpers do
@@ -99,8 +109,7 @@ helpers do
   def map_for_trip(trip)
     # Default params
     params = {
-      'id'                => 'map',
-      'class'             => 'overview',
+      'class'             => 'map',
       'data-mapbox-id'    => 'matsimitsu.f687427c',
       'data-zoom-control' => 'false'
     }
@@ -130,8 +139,16 @@ helpers do
     end
   end
 
+  def resize(image, new_size)
+    cdn_url(image.gsub('.jpg', "-#{new_size}.jpg"))
+  end
+
   def article_header_image_url(article)
-    cdn_url(article.metadata[:page]['trip_slug'], article.slug, 'header.jpg')
+    if article.data['header']
+      article.data['header']
+    else
+      cdn_url(article.metadata[:page]['trip_slug'], article.slug, 'header.jpg')
+    end
   end
 
   def photo(params)

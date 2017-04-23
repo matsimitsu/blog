@@ -1,38 +1,79 @@
-@mixin h1
+h1
   font-size: 4rem
   font-weight: bold
   margin-bottom: 0.5rem
   line-height: 1.2em
+  @include big-padding
 
-@mixin h2-sub
+h2
   font-size: 2rem
   line-height: 1.2em
+  @include big-padding
 
-@mixin h2
-  font-size: 2rem
+h2
+  font-size: 3rem
   line-height: 1.2em
   font-weight: bold
+  @include big-padding
 
-@mixin h3
-  font-size: 1.2rem
+h3
+  font-size: 2rem
   line-height: 1.2em
+  @include small-padding
 
-@mixin p
+h4
+  font-size: 1.5rem
+  @include small-padding
+
+.heading
+  h1
+    font-size: 4rem
+    padding: 0
+    margin: 0
+  h2
+    font-size: 1.2rem
+    margin: 0
+    padding: 0
+
+p
   font-size: 1rem
-  line-height: 1.2rem
+  line-height: 1.4rem
+  @include small-padding
+
+  &.small
+    font-size: 0.9rem
+    color: $font-light-color
+
+  &.big
+    font-size: 1.2rem
+    color: $font-medium-color
+
+strong
+  color: $dark-color
+  font-weight: bold
+
+i
+  font-style: italic
+
+small
+  font-size: 0.9em
+
+a
+  color: $font-color
+  text-decoration: underline
+
+p, ul, ol, dl, blockquote, hr, pre, table, fieldset, article, article footer, nav
+  line-height: 1.5em
+
+code
+  font-family: Monaco, "Courier New", Courier, monospace
+  padding: 2px 4px
+  background-color: $background-light-color
+  border-radius: 3px
+  font-size: 1em
 
 body
   font-family: $font-family
   color: $font-color
   text-align: center
   -webkit-font-smoothing: antialiased
-
-a
-  @include link-colors($link-color, $link-hover-color, $link-focus-color, $link-active-color, $link-visited-color)
-
-small
-  font-size: 0.9em
-
-p, ul, ol, dl, blockquote, hr, pre, table, fieldset, article, article footer, nav
-  line-height: 1.5em
-

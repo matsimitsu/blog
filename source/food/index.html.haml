@@ -1,0 +1,12 @@
+---
+blog: Food
+title: Food
+---
+.mod-page-title
+  %h1 What's Cookin'
+  %h2
+    Recipe's I found on the internet and like.
+    %br
+
+= partial('overviews/food', :locals => {:articles => page_articles})
+%p.disclaimer The source is included for each recipe, please the source for detailed descriptions/videos, this is just for me to remember what's what. Most of the recipe's have been altered to show metric units and to fit availability of ingredients in The Netherlands.

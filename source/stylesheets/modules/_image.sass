@@ -1,0 +1,20 @@
+figure, object, iframe, video, .gist, pre
+  display: block
+  margin: 0 auto 10px
+  @include small-margin
+
+  img
+    width: 100%
+    height: auto
+    background: linear-gradient(rgba(#000,0), rgba(#000,0.7))
+
+  +max-device-width-retina(480px)
+    width: 100%
+    max-width: 100%
+
+  &.full
+    width: 100vw
+    max-width: 100%
+    position: relative
+    img
+      max-width: 100%

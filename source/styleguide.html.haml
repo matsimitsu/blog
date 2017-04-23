@@ -1,0 +1,167 @@
+---
+title: Styleguide
+---
+
+%article
+  #header
+    %h1 h1 with sub header
+    %h2 This is a h2 sub-header
+
+  %h1 This is a h1 header
+
+  %h2 This is a h2 header
+  %h3 This is a h3 header
+  %h4 This is a h4 header
+
+  %p
+    This is a paragraph of text it can wrap <strong>multiple lines</strong> and <i>long blobs</i> of text should be separated into multiple paragraphs
+
+  %p To make it easier to read. It can also include <a href="/travel/asia2015/day-eleven/" target="_blank">Links</a> and <code>Inline code</code>.
+
+  %p.small
+    Sometimes a paragraph requires a bit less attention, we can make it stand out a bit less
+    by adding a <code>small</code> tag.
+  %p.big
+    Other times you want to attrackt a bit more attention to a paragraph, just add <code>big</code> to the <code>p</code> tag.
+
+  %p We can use lists with our list styling
+
+  %ul.list
+    %li First item
+    %li Second item
+    %li Third item
+
+  %p Sometimes you want a horizontal list
+  %ul.list.horizontal
+    %li
+      %strong Flights take
+      10
+    %li
+      %strong Coffees sipped
+      100
+    %li
+      %strong Ferries take
+      1
+
+    %li.right
+      %strong June
+      2017
+
+  %blockquote{:cite => "http://www.matsimitsu.com"}
+    Blockquotes are supported as well.
+
+
+  %h4 Sinlge photo
+  = photo(:src => cdn_url('photoset/spain2016/_DSC0916.jpg'), :ratio => 1.506)
+
+
+  %h4 Full photo
+  = photo(:src => cdn_url('photoset/spain2016/_DSC0938.jpg'), :ratio => 1.506, :class => "full")
+
+
+  %h4 Some content can be shown in columns
+  %p just wrap it in a <code>columns</code> tag.
+  %p You can do photos
+  .columns
+    = photo(:src => '//cdn.matsimitsu.com/japan2015/day-nineteen/image-8.jpg', :width => '733', :height => '1100')
+    = photo(:src => '//cdn.matsimitsu.com/japan2015/day-nineteen/image-9.jpg', :width => '733', :height => '1100')
+    = photo(:src => '//cdn.matsimitsu.com/japan2015/day-nineteen/image-10.jpg', :width => '1100', :height => '733')
+
+  %p Or text
+
+  .columns
+    %p This paragraph of text is on the left
+    %p This paragraph of text is on the right
+
+  %h4 Code blocks are hosted on GitHub.
+  <script src="https://gist.github.com/matsimitsu/6f65157e15a86f64f25b.js"></script>
+
+%h4 Special headers
+%p Some pages are special, such as the trip (day) page.
+
+#header.full.image{:style => "background-image: url('//cdn.matsimitsu.com/japan2015/day-six/image-4.jpg')"}
+  .overlay
+  .heading
+    %h1 This is the day title
+    %h2 And this is a subtitle - or a list of locations of that day
+
+    %a.scroller{:href => '#scrollme'}
+      %i.fa.fa-angle-down
+
+#scrollme
+  %p It also has a scroller that scrolls to the content of that day
+
+%h4 Overview header
+%p The overview header for a trip shows a large map of that trip:
+
+
+#header.half
+  .map{'data-locations' => %Q([{"latlng":[35.628856,139.738854],"title":"[Day Twenty] Shinagawa","url":"/travel/japan2015/day-twenty/"},{"latlng":[49.0096906,2.5479245],"title":"[Day Twenty] Charles de Gaulle Airport","url":"/travel/japan2015/day-twenty/"}]), 'data-center' => "[35.1575, 138.4552]", 'data-mapbox-id' => 'matsimitsu.f687427c', 'data-zoom-control' => 'false'}
+  .heading
+    %h1 This is the trip title
+    %h2 And this is a subtitle - or a list of locations of that day
+
+%h4 Footers
+%p We have two footers, one for food posts and one for trip posts
+
+.footer
+  .map.dark{'data-locations' => %Q([{"latlng":[35.68517629999999,139.7100517],"title":"Shinjuku Gyoen National Garden","url":"/travel/japan2015/day-six/"},{"latlng":[35.671736,139.6949447],"title":"Yoyogi Park","url":"/travel/japan2015/day-six/"}])}
+  .navigation
+    = link_to "map", :class => 'prev', :style => "background-image: url('//cdn.matsimitsu.com/japan2015/day-five/header.jpg')" do
+      %h3 Title for previous post
+    = link_to "map", :class => 'next', :style => "background-image: url('//cdn.matsimitsu.com/japan2015/day-seven/header.jpg')" do
+      %h3 Title for next post
+
+
+%p Below is a footer for the food post
+
+.footer
+  .content
+    %p.small The source is included for each recipe, please the source for detailed descriptions/videos, this is just for me to remember what's what. Most of the recipe's have been altered to show metric units and to fit availability of ingredients in The Netherlands.
+
+%p Or with two columns
+
+.footer
+  .content
+    .columns
+      %p.small The source is included for each recipe, please the source for detailed descriptions/videos, this is just for me to remember what's what. Most of the recipe's have been altered to show metric units and to fit availability of ingredients in The Netherlands.
+      %p.small The source is included for each recipe, please the source for detailed descriptions/videos, this is just for me to remember what's what. Most of the recipe's have been altered to show metric units and to fit availability of ingredients in The Netherlands.
+
+%h4 Index pages
+%p Index pages for the different categories look roughly the same, the first item has full-width all other items are shown in two colums.
+
+.overview.images
+  = link_to '#', :style => "background-image: url('//cdn.matsimitsu.com/japan2015/day-five/header.jpg')" do
+    .heading
+      %h1 Day One
+      %h2 Akihabara Electric Town
+
+  = link_to '#', :style => "background-image: url('//cdn.matsimitsu.com/japan2015/day-four/header.jpg')" do
+    .heading
+      %h1 Day One
+      %h2 Akihabara Electric Town
+
+  = link_to '#', :style => "background-image: url('//cdn.matsimitsu.com/japan2015/day-six/header.jpg')" do
+    .heading
+      %h1 Day One
+      %h2 Akihabara Electric Town
+
+
+%h4 An index page for texts posts
+
+.overview.text
+  = link_to '#' do
+    .heading
+      %h1 Day One
+      %h2 Akihabara Electric Town
+
+  = link_to '#' do
+    .heading
+      %h1 Day One
+      %h2 Akihabara Electric Town
+
+  = link_to '#' do
+    .heading
+      %h1 Day One
+      %h2 Akihabara Electric Town
+

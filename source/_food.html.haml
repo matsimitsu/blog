@@ -1,0 +1,18 @@
+#header.full.image{:style => "background-image: url('#{resize(article.data.header, '10x')}')", 'data-bg-src' => cdn_url(article.data.header)}
+  .heading
+    %h1= article.title
+    - if article.data.subtitle
+      %h2= article.data.subtitle
+
+    %a.scroller{:href => '#content'}
+      %i.fa.fa-angle-down
+
+%article#content
+  = article.body
+  - if current_page.data.source
+    Source:
+    %strong= link_to current_page.data.source, current_page.data.source
+
+.footer
+  .content
+    %p.small The source is included for each recipe, please the source for detailed descriptions/videos, this is just for me to remember what's what. Most of the recipe's have been altered to show metric units and to fit availability of ingredients in The Netherlands.

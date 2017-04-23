@@ -1,0 +1,96 @@
+body > header
+  +shadow
+  z-index: 10
+  position: relative
+
+  h1,h2
+    font-size: 1rem
+    font-weight: normal
+    margin: 0
+    padding: 0
+  a
+    text-decoration: none
+    color: $link-color
+    &:hover
+      text-decoration: underline
+
+  hgroup
+    display: flex
+
+  h2:before
+    content: '/'
+    margin: 0 20px
+    color: $font-light-color
+
+  .container
+    padding: 0 20px
+    display: flex
+    align-items: center
+    justify-content: space-between
+    height: $header-height
+
+    nav
+      ul
+        display: flex
+      li
+        margin-left: 20px
+
+#header
+  text-align: center
+  @include big-margin
+  h1
+    padding-bottom: 0
+  h2
+    padding-top: 0
+    color: $font-light-color
+    font-weight: normal
+
+  &.full, &.half
+    width: 100vw
+    position: relative
+    max-width: 100%
+
+  &.half
+    height: 50vh
+
+  &.full
+    height: 100vh
+
+  .heading
+    z-index: 1
+    position: absolute
+    bottom: 0
+    margin: auto
+    bottom: 100px
+    text-align: center
+    width: 100%
+
+  &.image
+    min-height: calc(100vh - #{$header-height})
+    background-color: #666
+    background-size: cover
+    color: #fff
+    +text-shadow
+
+    .overlay
+      position: absolute
+      top: 0
+      left: 0
+      height: 100%
+      width: 100%
+      background: linear-gradient(rgba(#000,0), rgba(#000,0.7))
+
+    .scroller
+      font-size: 4rem
+      color: #fff
+      padding: 2rem
+      display: inline-block
+      .fa
+        position: relative
+
+      &:hover
+        .fa
+          animation: updown 2s infinite
+
+  .map
+    height: 100%
