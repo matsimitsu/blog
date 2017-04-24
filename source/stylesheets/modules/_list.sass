@@ -1,7 +1,6 @@
 ul.list
   margin: 0px auto 20px
   text-align: left
-
   li
     list-style: square inside
 
@@ -10,6 +9,8 @@ ul.list
     display: flex
     margin-bottom: 20px
     width: 100%
+    +max-width(480px)
+      font-size: 0.6em
     li
       color: $font-medium-color
       list-style: none

@@ -3,6 +3,10 @@ body > header
   z-index: 10
   position: relative
 
+  +max-width(600px)
+    h2
+      display: none
+
   h1,h2
     font-size: 1rem
     font-weight: normal
@@ -69,6 +73,7 @@ body > header
     min-height: calc(100vh - #{$header-height})
     background-color: #666
     background-size: cover
+    background-position: center center
     color: #fff
     +text-shadow
 

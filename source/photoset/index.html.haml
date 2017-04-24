@@ -2,8 +2,9 @@
 blog: Photosets
 title: Photosets
 ---
-.mod-page-title
+#header
   %h1 Photosets
   %h2 Short trips and events
+.content-wrapper
+  = partial('overviews/photoset', :locals => {:articles => page_articles})
 
-= partial('overviews/photoset', :locals => {:articles => page_articles})

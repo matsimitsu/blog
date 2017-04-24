@@ -1,9 +1,8 @@
 ---
 title: Home
 ---
-.mod-homepage
-
-  %header.mod-page-title
+.content-wrapper
+  #header
     %h1 Hi, I'm Robert Beekman
     %h2 Welcome to my site
 
@@ -18,6 +17,3 @@ title: Home
 
   %h2 My latest photosets
   = partial('overviews/photoset', :locals => {:articles => blog('Photosets').articles[0..2]})
-
-  %h2 My latest blogpsts
-  = partial('overviews/blog', :locals => {:articles => blog('Blog').articles[0..1]})

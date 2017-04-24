@@ -1,8 +1,9 @@
 ---
 blog: Travel
 ---
-.mod-page-title
+#header
   %h1 My travels
   %h2 Photographing the world, one location at a time.
 
-= partial('overviews/travel', :locals => {:trips => trips})
+.content-wrapper
+  = partial('overviews/travel', :locals => {:trips => trips})

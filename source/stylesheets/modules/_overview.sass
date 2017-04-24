@@ -3,11 +3,11 @@
   margin: 0 auto 80px
   padding: 0
   display: flex
-  flex-flow: row wrap
+  flex-direction: row
+  flex-wrap: wrap
   width: 100%
 
   a
-    width: calc($content-width / 2 - 10)
     margin-right: 10px
     margin-bottom: 10px
     padding: 0
@@ -18,7 +18,10 @@
     display: flex
     justify-content: stretch
     align-items: flex-start
-    flex: 1
+    flex: 0 0 calc(50% - 5px)
+    +max-width($content-width)
+      flex: 0 1 100%
+      margin-right: 0px
     .heading
       z-index: 5
       padding: 40px 40px 80px
@@ -27,19 +30,28 @@
     h1
       margin-bottom: 10px
 
-    h2
-
   a:nth-child(2n+1)
     margin-right: 0
 
   a:first-child
-    width: 100%
+    flex: 0 1 100%
+
+  h1
+    font-size: 2rem
+
+  h2
+    font-size: 1rem
 
   &.images
     a
       height: $block-height
       color: white
       +text-shadow
+
+      &:first-child
+        min-height: 400px
+        +max-width($content-width)
+          min-height: $block-height
 
     .heading
       background: linear-gradient(rgba(#000,0.7), rgba(#000,0))
@@ -49,3 +61,6 @@
       border: 1px solid $border
       h2
         color: $font-medium-color
+        +small-padding
+    date
+      display: block

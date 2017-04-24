@@ -1,7 +1,8 @@
 .overview.text
   - articles.each do |article|
     = link_to article.url do
-      %h1= article.title
-      - if article.data.subtitle
-        %h2= article.data.subtitle
-      %date= article.date.strftime('%b %e %Y')
+      .heading
+        %h1= article.title
+        - if article.data.subtitle
+          %h2= article.data.subtitle
+        %date= article.date.strftime('%b %e %Y')

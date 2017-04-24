@@ -19,6 +19,9 @@
       width: 50%
       height: $block-height
 
+      +max-width(480px)
+        width: 100%
+        height: 100px
       h3
         color: white
         +text-shadow
@@ -29,6 +32,8 @@
         padding: 0 20px
         margin: auto
         line-height: $block-height
+        +max-width(480px)
+          line-height: 100px
 
       &:hover
         h3
@@ -43,7 +48,17 @@
       h3
         text-align: left
 
+    +max-width(480px)
+      .prev h3
+        text-align: left
+
+      .next h3
+        text-align: right
   .content
     max-width: $text-width
     margin: auto
     text-align: center
+
+  +max-width($content-width)
+    .columns
+      width: 100%

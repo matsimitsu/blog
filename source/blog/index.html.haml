@@ -1,8 +1,8 @@
 ---
 blog: Blog
 ---
-%header.mod-page-title
+#header
   %h1 Blog
   %h2 Technical write-ups
-
-= partial('overviews/blog', :locals => {:articles => page_articles})
+.content-wrapper
+  = partial('overviews/blog', :locals => {:articles => page_articles})
