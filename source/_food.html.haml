@@ -1,4 +1,4 @@
-#header.full.image{:style => "background-image: url('#{resize(article.data.header, '10x')}')", 'data-bg-src' => cdn_url(article.data.header)}
+#header.full.image{:style => "background-image: url('#{resize('10x', article.data.header)}')", 'data-bg-src' => cdn_url(article.data.header)}
   .heading
     %h1= article.title
     - if article.data.subtitle

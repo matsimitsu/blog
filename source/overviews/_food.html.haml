@@ -1,6 +1,6 @@
 .overview.images
   - articles.each do |article|
-    = link_to article.url, {:style => "background-image: url('#{resize article.data.header, '1100x'}')"} do
+    = link_to article.url, {:style => "background-image: url('#{resize '10x', article.data.header}')", 'data-bg-src' => cdn_url(article.data.header)} do
       .heading
         %h1= article.title
         - if article.data.subtitle

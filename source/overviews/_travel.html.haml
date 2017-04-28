@@ -1,6 +1,8 @@
 .overview.images
   - trips.each do |trip|
-    = link_to trip_slug_path(trip.slug), {:style => "background-image: url('#{cdn_url(trip.slug, 'header.jpg')}')"} do
+    = link_to trip_slug_path(trip.slug), {:style => "background-image: url('#{resize('10x', trip.slug, 'header.jpg')}')", 'data-bg-src' => cdn_url(trip.slug, 'header.jpg')} do
       %header.heading
         %h1= trip.title
         %h2= trip.subtitle
+
+

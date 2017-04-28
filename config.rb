@@ -50,11 +50,17 @@ activate :directory_indexes
 
 helpers do
   def base_url(*paths)
-    "#{data.config.base_url}/#{paths.join('/')}"
+    path = paths.join('/')
+    separator = path.start_with?('/') ? nil : '/'
+
+    "#{data.config.base_url}#{separator}#{path}"
   end
 
   def cdn_url(*paths)
-    "#{data.config.cdn_base_url}/#{paths.join('/')}"
+    path = paths.join('/')
+    base = path.start_with?('http') ? nil : data.config.cdn_base_url
+    separator = path.start_with?('/') || path.start_with?('http') ? nil : '/'
+    "#{base}#{separator}#{path}"
   end
 
   def page_title
@@ -139,16 +145,12 @@ helpers do
     end
   end
 
-  def resize(image, new_size)
-    cdn_url(image.gsub('.jpg', "-#{new_size}.jpg"))
+  def resize(new_size, *paths)
+    cdn_url(paths).gsub('.jpg', "-#{new_size}.jpg")
   end
 
   def article_header_image_url(article)
-    if article.data['header']
-      article.data['header']
-    else
-      cdn_url(article.metadata[:page]['trip_slug'], article.slug, 'header.jpg')
-    end
+    cdn_url(article.metadata[:page]['trip_slug'], article.slug, article.data['header'] || 'header.jpg')
   end
 
   def photo(params)

@@ -1,4 +1,4 @@
-= link_to article.url, {:style => "background-image: url('#{cdn_url(trip.slug, article.slug, 'header-x1100.jpg')}')"} do
+= link_to article.url, {:style => "background-image: url('#{resize('10x', trip.slug, article.slug, data['header'] || 'header.jpg')}')", 'data-bg-src' => cdn_url(trip.slug, article.slug, data['header'] || 'header.jpg')} do
   .heading
     %h1= article.title
     - if article.data.subtitle

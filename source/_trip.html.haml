@@ -1,4 +1,4 @@
-#header.full.image{:style => "background-image: url('#{article_header_image_url(article)}')"}
+#header.full.image{:style => "background-image: url('#{resize('10x', article_header_image_url(article))}')", 'data-bg-src' => article_header_image_url(article)}
   .overlay
   .heading
     %h1= article.title
@@ -24,8 +24,9 @@
   - if article.previous_article || article.next_article
     .navigation
       - if article.previous_article
-        = link_to article.previous_article.url, :class => 'prev', :style => "background-image: url('#{article_header_image_url(article.previous_article)}')" do
+        = link_to article.previous_article.url, :class => 'prev', :style => "background-image: url('#{resize('10x', article_header_image_url(article.previous_article))}')", 'data-bg-src' => article_header_image_url(article.previous_article) do
           %h3= article.previous_article.title
       - if article.next_article
-        = link_to article.next_article.url, :class => 'next', :style => "background-image: url('#{article_header_image_url(article.next_article)}')" do
+        = link_to article.next_article.url, :class => 'next', :style => "background-image: url('#{resize('10x', article_header_image_url(article.next_article))}')", 'data-bg-src' => article_header_image_url(article.next_article) do
           %h3= article.next_article.title
+
