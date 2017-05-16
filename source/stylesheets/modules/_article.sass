@@ -3,14 +3,25 @@ article
     max-width: $content-width
     margin: auto
 
-    +max-width($content-width)
+    +max-width($phone-width)
       max-width: 100%
       padding: 10px
 
   p, ul, blockquote
     max-width: $text-width
     margin: auto
-
-    +max-width($content-width)
+    +small-padding
+    +max-width($phone-width)
       max-width: 100%
       padding: 20px
+
+.trip article
+  p
+    +super-padding
+
+    +max-width($phone-width)
+      max-width: 100%
+      padding: 20px
+
+  h2 + p, p + p, h3 + p, h1 + p
+    padding-top: 0

@@ -38,7 +38,7 @@ $(document).ready ->
     url = el.data('bg-src').replace('.jpg', "-#{width}x.jpg")
 
     preload url, ->
-      el.css('background-image', "url(#{url}");
+      el.css('background-image', "url(#{url})");
       el.addClass('rendered')
 
   $('.scroller').click (e) ->

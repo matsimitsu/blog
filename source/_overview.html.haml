@@ -1,7 +1,8 @@
-= link_to article.url, {:style => "background-image: url('#{resize('10x', trip.slug, article.slug, data['header'] || 'header.jpg')}')", 'data-bg-src' => cdn_url(trip.slug, article.slug, data['header'] || 'header.jpg')} do
+= link_to article.url, {:style => "background-image: url('#{resize('10x', article_header_image_url(article))}')", 'data-bg-src' => article_header_image_url(article)} do
   .heading
     %h1= article.title
     - if article.data.subtitle
       %h2= article.data.subtitle
     - elsif article.data.locations
       %h2= article.data.locations.map{ |l| l['title'] }.join(' - ')
+
