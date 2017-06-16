@@ -1,0 +1,28 @@
+.hotel
+  max-width: $text-width
+  margin: 20px auto
+
+  img
+    width: 100%
+  .disclaimer
+    @include mini-padding
+  a
+    display: block
+    text-decoration: none
+    padding: 20px
+    background-color: $background-light-color
+
+    header
+      display: flex
+
+      h4, p
+        padding: 0
+
+      .rating
+        margin-right: 0
+        margin-left: auto
+    .address, .disclaimer
+      padding: 0
+    p
+      @include small-padding
+      text-align: left

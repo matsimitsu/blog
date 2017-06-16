@@ -6,6 +6,10 @@ require 'yaml'
 require 'fileutils'
 require 'fastimage'
 require 'middleman-blog'
+require 'nokogiri'
+require 'restclient'
+require 'json'
+require 'yaml'
 
 VALID_IMAGES = %w( png jpg )
 Encoding.default_external = Encoding::UTF_8
@@ -27,6 +31,7 @@ command :post do |c|
   c.action do |args, options|
     prefix     = @config['trip_prefix']
     trips_path = File.join(Dir.pwd, 'source', prefix)
+    hotel      = nil
 
     # Get trip from option or ask for it
     unless trip = options.trip
@@ -83,6 +88,27 @@ command :post do |c|
       break unless agree("Add another location?: ")
     end
 
+    # Add hotel info, if wanted
+    hotel_url = ask("(Booking) hotel url: ")
+    if hotel_url.to_s.length > 0
+      begin
+        page = Nokogiri::HTML(RestClient.get(hotel_url))
+        json = JSON.parse(page.xpath('//script[@type="application/ld+json"]')[0])
+        hotel = {
+          'name'        => json['name'],
+          'address'     => json['address']['streetAddress'],
+          'image'       => json['image'],
+          'priceRange'  => json['priceRange'],
+          'url'         => json['url'] + "?aid=939121",
+          'map'         => json['hasMap'],
+          'description' => json['description'],
+          'rating'      => json['aggregateRating']['ratingValue']
+        }
+      rescue => e
+        puts "Hotel could not be parsed : #{e.inspect}"
+      end
+    end
+
     # Check for photos
     if options.photos
       photos = []
@@ -109,12 +135,12 @@ command :post do |c|
     yaml = {
       'title'     => title,
       'date'      => date,
-      'locations' => locations
-    }.to_yaml
-
+      'locations' => locations,
+    }
+    yaml['hotel'] = hotel if hotel
 
     # Generate the post template
-    template = %Q(#{yaml}
+    template = %Q(#{yaml.to_yaml}
 ---
 
 #{photos.join("\n")}

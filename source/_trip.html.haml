@@ -20,6 +20,8 @@
   //        %strong= val
 
 .footer
+  - if article.data.hotel
+    = partial 'hotel', :locals => {:hotel => article.data.hotel}
   .map.dark{'data-locations' => (article.data.locations || []).map { |loc| {:latlng => loc.latlng, :title => "#{loc.title}", :url => article.url} }.to_json}
   - if article.previous_article || article.next_article
     .navigation

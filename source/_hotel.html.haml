@@ -1,0 +1,8 @@
+.hotel
+  = link_to hotel.url, :title => "Affiliate link to #{hotel.name}" do
+    %header
+      %h4= hotel.name
+      %p.rating= hotel.rating
+    %p.address.small= hotel.address
+    %p= hotel.description
+    %img{:src => hotel.image}
